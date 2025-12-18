@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BookOpen, GraduationCap, Clock, Users, Target, Award, ArrowRight, School, FileText } from "lucide-react";
+import { BookOpen, GraduationCap, Clock, Users, Target, Award, ArrowRight, School, FileText, ArrowDown, ArrowRightCircle } from "lucide-react";
 
 export default function Courses() {
   return (
@@ -133,6 +133,81 @@ export default function Courses() {
               <Target className="h-8 w-8 mr-3 text-islamic-green" />
               Program Outcomes
             </h2>
+            
+            {/* Visual Flow Diagram */}
+            <div className="mb-12 bg-gradient-to-br from-gray-50 to-white rounded-xl p-8 border-2 border-islamic-green/20">
+              <h3 className="text-2xl font-bold mb-8 text-center text-gray-900">Program Flow Diagram</h3>
+              <div className="relative">
+                {/* Noorani Program - Starting Point */}
+                <div className="flex justify-center mb-8">
+                  <div className="bg-gradient-to-r from-islamic-green to-teal-700 text-white rounded-xl p-6 shadow-lg max-w-sm w-full text-center">
+                    <BookOpen className="h-12 w-12 mx-auto mb-3" />
+                    <h4 className="text-xl font-bold mb-2">Noorani Program</h4>
+                    <p className="text-sm text-teal-100">Foundation Level</p>
+                  </div>
+                </div>
+
+                {/* Arrow Down */}
+                <div className="flex justify-center mb-6">
+                  <ArrowDown className="h-8 w-8 text-islamic-green animate-pulse" />
+                </div>
+
+                {/* Two Pathways */}
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  {/* Hifz Program Path */}
+                  <div className="relative">
+                    <div className="bg-gradient-to-br from-teal-600 to-teal-800 text-white rounded-xl p-6 shadow-lg text-center">
+                      <GraduationCap className="h-10 w-10 mx-auto mb-3" />
+                      <h4 className="text-lg font-bold mb-2">Hifz Program</h4>
+                      <p className="text-sm text-teal-100 mb-4">Complete Qur'an Memorization</p>
+                      <div className="flex justify-center">
+                        <ArrowDown className="h-6 w-6 text-teal-200" />
+                      </div>
+                    </div>
+                    {/* Hifz Outcomes */}
+                    <div className="mt-4 space-y-2">
+                      <div className="bg-teal-50 p-3 rounded-lg border-l-4 border-teal-700">
+                        <p className="text-sm font-semibold text-gray-900">✓ Hafiz-ul-Qur'an</p>
+                      </div>
+                      <div className="bg-teal-50 p-3 rounded-lg border-l-4 border-teal-700">
+                        <p className="text-sm font-semibold text-gray-900">✓ Tajweed Mastery</p>
+                      </div>
+                      <div className="bg-teal-50 p-3 rounded-lg border-l-4 border-teal-700">
+                        <p className="text-sm font-semibold text-gray-900">✓ Eligible for Dawrah/Alim</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Public School Path */}
+                  <div className="relative">
+                    <div className="bg-gradient-to-br from-blue-600 to-blue-800 text-white rounded-xl p-6 shadow-lg text-center">
+                      <School className="h-10 w-10 mx-auto mb-3" />
+                      <h4 className="text-lg font-bold mb-2">Public Primary School</h4>
+                      <p className="text-sm text-blue-100 mb-4">Class 5 Admission</p>
+                      <div className="flex justify-center">
+                        <ArrowDown className="h-6 w-6 text-blue-200" />
+                      </div>
+                    </div>
+                    {/* School Outcomes */}
+                    <div className="mt-4 space-y-2">
+                      <div className="bg-blue-50 p-3 rounded-lg border-l-4 border-blue-700">
+                        <p className="text-sm font-semibold text-gray-900">✓ Formal Education</p>
+                      </div>
+                      <div className="bg-blue-50 p-3 rounded-lg border-l-4 border-blue-700">
+                        <p className="text-sm font-semibold text-gray-900">✓ Academic Skills</p>
+                      </div>
+                      <div className="bg-blue-50 p-3 rounded-lg border-l-4 border-blue-700">
+                        <p className="text-sm font-semibold text-gray-900">✓ Continued Support</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Connecting Line */}
+                <div className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-0.5 bg-gradient-to-r from-transparent via-islamic-green to-transparent opacity-30"></div>
+              </div>
+            </div>
+
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">After Noorani Program</h3>
