@@ -7,7 +7,7 @@ export default function Courses() {
       {/* Header */}
       <section className="bg-gradient-to-r from-islamic-green to-teal-700 text-white py-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl font-bold mb-4">Our Courses</h1>
+          <h1 className="text-5xl font-bold mb-4">Available Programs</h1>
           <p className="text-xl text-teal-100 max-w-3xl mx-auto">
             Comprehensive Islamic Education Programs for Orphans and Students
           </p>

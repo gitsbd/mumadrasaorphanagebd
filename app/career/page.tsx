@@ -1,4 +1,4 @@
-import { Briefcase, GraduationCap, Users, Clock, MapPin, Mail, CheckCircle, BookOpen, Award } from "lucide-react";
+import { Briefcase, GraduationCap, Users, Clock, MapPin, Mail, CheckCircle, BookOpen, Award, Phone, FileText } from "lucide-react";
 import Link from "next/link";
 
 export default function Career() {
@@ -139,9 +139,9 @@ export default function Career() {
             <h2 className="text-4xl font-bold mb-8 text-center text-gray-900">Available Positions</h2>
             <div className="space-y-6">
               {teacherPositions.map((position, index) => (
-                <div key={index} className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
+                <div key={index} className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow relative">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
-                    <div>
+                    <div className="flex-1">
                       <h3 className="text-2xl font-bold text-gray-900 mb-2">{position.title}</h3>
                       <div className="flex flex-wrap gap-4 text-sm text-gray-600">
                         <span className="flex items-center">
@@ -153,6 +153,15 @@ export default function Career() {
                           {position.type}
                         </span>
                       </div>
+                    </div>
+                    <div className="mt-4 md:mt-0 md:ml-4">
+                      <Link
+                        href={`/career/apply?position=${encodeURIComponent(position.title)}`}
+                        className="inline-flex items-center bg-gradient-to-r from-islamic-green to-teal-700 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:from-teal-700 hover:to-islamic-green transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                      >
+                        <FileText className="h-4 w-4 mr-1.5" />
+                        Apply Now
+                      </Link>
                     </div>
                   </div>
 
