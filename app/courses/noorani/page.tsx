@@ -1,4 +1,4 @@
-import { BookOpen, Clock, Users, Target, CheckCircle, ArrowRight, School } from "lucide-react";
+import { BookOpen, Clock, Users, Target, CheckCircle, ArrowRight, School, FileText } from "lucide-react";
 import Link from "next/link";
 
 export default function NooraniCourse() {
@@ -36,7 +36,7 @@ export default function NooraniCourse() {
       {/* Header */}
       <section className="bg-gradient-to-r from-islamic-green to-teal-700 text-white py-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl font-bold mb-4">Noorani Course</h1>
+          <h1 className="text-5xl font-bold mb-4">Noorani Program</h1>
           <p className="text-xl text-teal-100 max-w-3xl mx-auto">
             Modern & Integrated Curriculum for Islamic Foundational Education
           </p>
@@ -80,13 +80,22 @@ export default function NooraniCourse() {
                 <p className="text-gray-600">Noorani Kaida Stage</p>
               </div>
             </div>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
               {level1Subjects.map((item, idx) => (
                 <div key={idx} className="border-l-4 border-islamic-green pl-4">
                   <h3 className="font-semibold text-lg text-gray-900 mb-2">{item.subject}</h3>
                   <p className="text-gray-700">{item.topics}</p>
                 </div>
               ))}
+            </div>
+            <div className="border-t pt-6">
+              <Link
+                href="/application?program=noorani&level=1"
+                className="inline-flex items-center bg-islamic-green text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
+              >
+                <FileText className="h-5 w-5 mr-2" />
+                Apply for Level 1
+              </Link>
             </div>
           </div>
 
@@ -101,13 +110,22 @@ export default function NooraniCourse() {
                 <p className="text-gray-600">Intermediate Stage</p>
               </div>
             </div>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
               {level2Subjects.map((item, idx) => (
                 <div key={idx} className="border-l-4 border-teal-600 pl-4">
                   <h3 className="font-semibold text-lg text-gray-900 mb-2">{item.subject}</h3>
                   <p className="text-gray-700">{item.topics}</p>
                 </div>
               ))}
+            </div>
+            <div className="border-t pt-6">
+              <Link
+                href="/application?program=noorani&level=2"
+                className="inline-flex items-center bg-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
+              >
+                <FileText className="h-5 w-5 mr-2" />
+                Apply for Level 2
+              </Link>
             </div>
           </div>
 
@@ -122,13 +140,22 @@ export default function NooraniCourse() {
                 <p className="text-gray-600">Advanced Stage</p>
               </div>
             </div>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
               {level3Subjects.map((item, idx) => (
                 <div key={idx} className="border-l-4 border-teal-700 pl-4">
                   <h3 className="font-semibold text-lg text-gray-900 mb-2">{item.subject}</h3>
                   <p className="text-gray-700">{item.topics}</p>
                 </div>
               ))}
+            </div>
+            <div className="border-t pt-6">
+              <Link
+                href="/application?program=noorani&level=3"
+                className="inline-flex items-center bg-teal-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-800 transition-colors"
+              >
+                <FileText className="h-5 w-5 mr-2" />
+                Apply for Level 3
+              </Link>
             </div>
           </div>
 
@@ -165,10 +192,10 @@ export default function NooraniCourse() {
           <div className="bg-white rounded-xl shadow-lg p-8">
             <h2 className="text-3xl font-bold mb-6 text-gray-900 flex items-center">
               <Target className="h-8 w-8 mr-3 text-islamic-green" />
-              After Completing Noorani Course
+              After Completing Noorani Program
             </h2>
             <p className="text-lg text-gray-700 mb-8">
-              Upon successful completion of the Noorani Course, students have two pathways to continue their education:
+              Upon successful completion of the Noorani Program, students have two pathways to continue their education:
             </p>
             <div className="grid md:grid-cols-2 gap-6">
               {/* Hifz Program Path */}
@@ -216,7 +243,7 @@ export default function NooraniCourse() {
                 </div>
                 <p className="text-gray-700 mb-4 leading-relaxed">
                   Students who prefer to continue in the general education system can join <strong>Class 5</strong> 
-                  in a nearby public primary school. Our Noorani Course prepares students with the necessary 
+                  in a nearby public primary school. Our Noorani Program prepares students with the necessary 
                   academic foundation for this transition.
                 </p>
                 <ul className="space-y-2 mb-6 text-gray-700">

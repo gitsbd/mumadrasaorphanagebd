@@ -23,7 +23,7 @@ export default function Career() {
       ],
     },
     {
-      title: "Noorani Course Teacher",
+      title: "Noorani Program Teacher",
       department: "Noorani Department",
       type: "Full-time",
       requirements: [

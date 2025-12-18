@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone, BookOpen, Facebook, User, Users } from "lucide-react";
+import { Mail, MapPin, Phone, BookOpen, Facebook, User, Users, Info, GraduationCap, Heart, Briefcase, Shield, FileText, RefreshCw, AlertTriangle, FileCheck, Copyright } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -38,6 +38,11 @@ export default function Footer() {
                     Advisory Committee
                   </Link>
                 </li>
+                <li>
+                  <Link href="/legal/constitution" className="text-gray-400 hover:text-islamic-green transition-colors text-sm">
+                    Constitution
+                  </Link>
+                </li>
               </ul>
             </div>
 
@@ -59,28 +64,33 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/about" className="text-gray-400 hover:text-islamic-green transition-colors">
-                  About Us
+                <Link href="/about" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                  <Info className="h-4 w-4 text-islamic-green" />
+                  <span>About Us</span>
                 </Link>
               </li>
               <li>
-                <Link href="/courses" className="text-gray-400 hover:text-islamic-green transition-colors">
-                  Courses
+                <Link href="/courses" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                  <GraduationCap className="h-4 w-4 text-islamic-green" />
+                  <span>Courses</span>
                 </Link>
               </li>
               <li>
-                <Link href="/donate" className="text-gray-400 hover:text-islamic-green transition-colors">
-                  Donate
+                <Link href="/donate" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                  <Heart className="h-4 w-4 text-islamic-green" />
+                  <span>Donate</span>
                 </Link>
               </li>
               <li>
-                <Link href="/career" className="text-gray-400 hover:text-islamic-green transition-colors">
-                  Career
+                <Link href="/career" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                  <Briefcase className="h-4 w-4 text-islamic-green" />
+                  <span>Career</span>
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-400 hover:text-islamic-green transition-colors">
-                  Contact
+                <Link href="/contact" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                  <Users className="h-4 w-4 text-islamic-green" />
+                  <span>Contact Us</span>
                 </Link>
               </li>
             </ul>
@@ -91,33 +101,39 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Legal</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/legal/privacy-policy" className="text-gray-400 hover:text-islamic-green transition-colors">
-                  Privacy Policy
+                <Link href="/legal/privacy-policy" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                  <Shield className="h-4 w-4 text-islamic-green" />
+                  <span>Privacy Policy</span>
                 </Link>
               </li>
               <li>
-                <Link href="/legal/terms" className="text-gray-400 hover:text-islamic-green transition-colors">
-                  Terms & Conditions
+                <Link href="/legal/terms" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                  <FileText className="h-4 w-4 text-islamic-green" />
+                  <span>Terms & Conditions</span>
                 </Link>
               </li>
               <li>
-                <Link href="/legal/refund-policy" className="text-gray-400 hover:text-islamic-green transition-colors">
-                  Refund Policy
+                <Link href="/legal/refund-policy" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                  <RefreshCw className="h-4 w-4 text-islamic-green" />
+                  <span>Refund Policy</span>
                 </Link>
               </li>
               <li>
-                <Link href="/legal/disclaimer" className="text-gray-400 hover:text-islamic-green transition-colors">
-                  Disclaimer
+                <Link href="/legal/disclaimer" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                  <AlertTriangle className="h-4 w-4 text-islamic-green" />
+                  <span>Disclaimer</span>
                 </Link>
               </li>
               <li>
-                <Link href="/legal/registration" className="text-gray-400 hover:text-islamic-green transition-colors">
-                  Registration & Compliance
+                <Link href="/legal/registration" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                  <FileCheck className="h-4 w-4 text-islamic-green" />
+                  <span>Registration & Compliance</span>
                 </Link>
               </li>
               <li>
-                <Link href="/legal/copyright" className="text-gray-400 hover:text-islamic-green transition-colors">
-                  Copyright Notice
+                <Link href="/legal/copyright" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                  <Copyright className="h-4 w-4 text-islamic-green" />
+                  <span>Copyright Notice</span>
                 </Link>
               </li>
             </ul>

@@ -1,4 +1,5 @@
-import { GraduationCap, Clock, Users, Target, BookOpen, CheckCircle, Award } from "lucide-react";
+import { GraduationCap, Clock, Users, Target, BookOpen, CheckCircle, Award, FileText } from "lucide-react";
+import Link from "next/link";
 
 export default function HifzCourse() {
   const phases = [
@@ -259,7 +260,7 @@ export default function HifzCourse() {
           </div>
 
           {/* Completion Outcomes */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
+          <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
             <h2 className="text-3xl font-bold mb-6 text-gray-900 flex items-center">
               <GraduationCap className="h-8 w-8 mr-3 text-teal-700" />
               Completion Outcomes
@@ -275,6 +276,21 @@ export default function HifzCourse() {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Apply Section */}
+          <div className="bg-gradient-to-r from-teal-700 to-islamic-dark rounded-xl shadow-lg p-8 text-white text-center">
+            <h2 className="text-3xl font-bold mb-4">Ready to Start Your Hifz Journey?</h2>
+            <p className="text-xl text-teal-100 mb-6">
+              Apply now for admission to our Hifz Program
+            </p>
+            <Link
+              href="/application?program=hifz"
+              className="inline-flex items-center bg-white text-teal-700 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg"
+            >
+              <FileText className="h-6 w-6 mr-2" />
+              Apply for Hifz Program
+            </Link>
           </div>
         </div>
       </section>

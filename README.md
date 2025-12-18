@@ -20,7 +20,7 @@ This website showcases the institution's mission, courses, and provides informat
 - **Home**: Hero section, core values, highlights, and mission
 - **About Us**: Institution information, constitution, committee structure, and founding principles
 - **Courses**: 
-  - Noorani Course (Modern & Integrated Curriculum)
+  - Noorani Program (Modern & Integrated Curriculum)
   - Hifz Program (Qur'an Memorization Program)
 - **Donate**: Donation information, methods, and impact
 - **Contact**: Contact form and institution details
@@ -76,7 +76,7 @@ npm start
 ├── app/
 │   ├── about/          # About Us page
 │   ├── courses/        # Courses pages
-│   │   ├── noorani/    # Noorani course details
+│   │   ├── noorani/    # Noorani program details
 │   │   └── hifz/       # Hifz course details
 │   ├── contact/        # Contact page
 │   ├── donate/         # Donation page

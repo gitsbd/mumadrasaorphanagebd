@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, BookOpen, Users, GraduationCap, Heart, Info } from "lucide-react";
+import { Menu, X, BookOpen, Users, GraduationCap, Heart, Info, FileText } from "lucide-react";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,9 +10,7 @@ export default function Navigation() {
   const navItems = [
     { href: "/", label: "Home", icon: BookOpen },
     { href: "/about", label: "About Us", icon: Info },
-    { href: "/courses", label: "Courses", icon: GraduationCap },
-    { href: "/donate", label: "Donate", icon: Heart },
-    { href: "/contact", label: "Contact", icon: Users },
+    { href: "/courses", label: "Program", icon: GraduationCap },
   ];
 
   return (
@@ -45,6 +43,22 @@ export default function Navigation() {
                 </Link>
               );
             })}
+            {/* Apply Button - Highlighted */}
+            <Link
+              href="/application"
+              className="ml-2 flex items-center space-x-2 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-600 text-white px-5 py-2.5 rounded-lg font-semibold shadow-md hover:shadow-lg hover:from-cyan-600 hover:via-blue-500 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 border border-blue-400/30"
+            >
+              <FileText className="h-4 w-4" />
+              <span>Apply</span>
+            </Link>
+            {/* Donate Button - Right End */}
+            <Link
+              href="/donate"
+              className="ml-4 flex items-center space-x-2 bg-gradient-to-r from-islamic-green via-teal-600 to-teal-700 text-white px-6 py-2.5 rounded-lg font-semibold shadow-lg hover:shadow-xl hover:from-teal-700 hover:via-teal-600 hover:to-islamic-green transition-all duration-300 transform hover:scale-105"
+            >
+              <Heart className="h-5 w-5" />
+              <span>Donate</span>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -76,6 +90,24 @@ export default function Navigation() {
                 </Link>
               );
             })}
+            {/* Apply Button - Mobile */}
+            <Link
+              href="/application"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg hover:from-cyan-600 hover:via-blue-500 hover:to-blue-600 transition-all duration-300 border border-blue-400/30"
+            >
+              <FileText className="h-5 w-5" />
+              <span>Apply</span>
+            </Link>
+            {/* Donate Button - Mobile */}
+            <Link
+              href="/donate"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center justify-center space-x-2 bg-gradient-to-r from-islamic-green via-teal-600 to-teal-700 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl hover:from-teal-700 hover:via-teal-600 hover:to-islamic-green transition-all duration-300 mt-2"
+            >
+              <Heart className="h-5 w-5" />
+              <span>Donate</span>
+            </Link>
           </div>
         </div>
       )}

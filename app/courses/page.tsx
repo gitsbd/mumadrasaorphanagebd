@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BookOpen, GraduationCap, Clock, Users, Target, Award, ArrowRight, School } from "lucide-react";
+import { BookOpen, GraduationCap, Clock, Users, Target, Award, ArrowRight, School, FileText } from "lucide-react";
 
 export default function Courses() {
   return (
@@ -18,11 +18,11 @@ export default function Courses() {
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8 mb-16">
-            {/* Noorani Course Card */}
+            {/* Noorani Program Card */}
             <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="bg-gradient-to-r from-islamic-green to-teal-600 p-6 text-white">
                 <BookOpen className="h-12 w-12 mb-4" />
-                <h2 className="text-3xl font-bold mb-2">Noorani Course</h2>
+                <h2 className="text-3xl font-bold mb-2">Noorani Program</h2>
                 <p className="text-teal-100">Modern & Integrated Curriculum</p>
               </div>
               <div className="p-8">
@@ -54,12 +54,21 @@ export default function Courses() {
                     <span>Complete Quran Reading + Academic Bridge</span>
                   </li>
                 </ul>
-                <Link
-                  href="/courses/noorani"
-                  className="inline-block bg-islamic-green text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
-                >
-                  Learn More →
-                </Link>
+                <div className="flex gap-3">
+                  <Link
+                    href="/courses/noorani"
+                    className="inline-flex items-center bg-islamic-green text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
+                  >
+                    Learn More →
+                  </Link>
+                  <Link
+                    href="/application?program=noorani"
+                    className="inline-flex items-center bg-white border-2 border-islamic-green text-islamic-green px-6 py-3 rounded-lg font-semibold hover:bg-islamic-light transition-colors"
+                  >
+                    <FileText className="h-5 w-5 mr-2" />
+                    Apply
+                  </Link>
+                </div>
               </div>
             </div>
 
@@ -99,12 +108,21 @@ export default function Courses() {
                     <span>Strong retention system (Dawr & Takrar)</span>
                   </li>
                 </ul>
-                <Link
-                  href="/courses/hifz"
-                  className="inline-block bg-teal-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-islamic-dark transition-colors"
-                >
-                  Learn More →
-                </Link>
+                <div className="flex gap-3">
+                  <Link
+                    href="/courses/hifz"
+                    className="inline-flex items-center bg-teal-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-islamic-dark transition-colors"
+                  >
+                    Learn More →
+                  </Link>
+                  <Link
+                    href="/application?program=hifz"
+                    className="inline-flex items-center bg-white border-2 border-teal-700 text-teal-700 px-6 py-3 rounded-lg font-semibold hover:bg-teal-50 transition-colors"
+                  >
+                    <FileText className="h-5 w-5 mr-2" />
+                    Apply
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -117,7 +135,7 @@ export default function Courses() {
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-800">After Noorani Course</h3>
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">After Noorani Program</h3>
                 <p className="text-gray-700 mb-4">
                   Students can choose one of two pathways:
                 </p>

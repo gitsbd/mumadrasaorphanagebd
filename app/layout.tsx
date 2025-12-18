@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Madinatul Uloom Madrasa & Orphanage | Islamic Education in Bangladesh",
   description: "A non-profit Islamic educational institution providing free education to orphans and underprivileged children in Nakla, Sherpur, Mymensingh, Bangladesh.",
-  keywords: "Islamic education, Madrasa, Orphanage, Bangladesh, Quran memorization, Hifz, Noorani course, Sherpur, Mymensingh",
+  keywords: "Islamic education, Madrasa, Orphanage, Bangladesh, Quran memorization, Hifz, Noorani program, Sherpur, Mymensingh",
 };
 
 export default function RootLayout({

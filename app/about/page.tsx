@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BookOpen, Users, Shield, FileText, Award, Heart } from "lucide-react";
 
 export default function About() {
@@ -158,7 +159,7 @@ export default function About() {
               <Heart className="h-8 w-8 mr-3 text-islamic-green" />
               Funding and Financial Management
             </h2>
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-8 mb-6">
               <div>
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Sources of Funding</h3>
                 <ul className="space-y-2 text-gray-700">
@@ -178,6 +179,20 @@ export default function About() {
                   <li>• Religious and educational projects</li>
                 </ul>
               </div>
+            </div>
+            {/* Donate Call-to-Action */}
+            <div className="bg-gradient-to-r from-islamic-green to-teal-700 rounded-lg p-6 text-white text-center">
+              <h3 className="text-xl font-semibold mb-2">Support Our Mission</h3>
+              <p className="text-sm text-teal-100 mb-4">
+                Your contributions help us provide free education and care to orphaned and underprivileged children
+              </p>
+              <Link
+                href="/donate"
+                className="inline-flex items-center space-x-2 bg-white text-islamic-green px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
+              >
+                <Heart className="h-5 w-5" />
+                <span>Donate Now</span>
+              </Link>
             </div>
           </div>
 
