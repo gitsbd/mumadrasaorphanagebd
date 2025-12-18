@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone, BookOpen, Facebook, User } from "lucide-react";
+import { Mail, MapPin, Phone, BookOpen, Facebook, User, Users } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -15,6 +15,32 @@ export default function Footer() {
             <p className="text-gray-400 text-sm mb-4">
               A non-profit Islamic educational institution providing free education to orphans and underprivileged children based on Qur'anic and Sunnah principles.
             </p>
+            
+            {/* Organization Section */}
+            <div className="mb-4">
+              <div className="flex items-center space-x-2 mb-3">
+                <Users className="h-5 w-5 text-islamic-green" />
+                <h4 className="text-base font-semibold">Organization</h4>
+              </div>
+              <ul className="space-y-2 ml-7">
+                <li>
+                  <Link href="/organization/executive-committee" className="text-gray-400 hover:text-islamic-green transition-colors text-sm">
+                    Executive Committee
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/organization/standing-committee" className="text-gray-400 hover:text-islamic-green transition-colors text-sm">
+                    Standing Committee
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/organization/advisory-committee" className="text-gray-400 hover:text-islamic-green transition-colors text-sm">
+                    Advisory Committee
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
             <div className="flex items-center space-x-3">
               <Facebook className="h-5 w-5 text-islamic-green" />
               <a
