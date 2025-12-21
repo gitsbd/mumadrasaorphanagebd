@@ -2,12 +2,15 @@
 
 import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { Heart, DollarSign, CheckCircle, Phone, Mail, ArrowLeft, Shield } from "lucide-react";
+import { Heart, DollarSign, CheckCircle, Phone, Mail, ArrowLeft, Shield, AlertCircle } from "lucide-react";
 import Link from "next/link";
+import { APPS_SCRIPT_URLS } from "@/config/apps-script-urls";
 
 function DonateFormContent() {
   const searchParams = useSearchParams();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     fullName: "",
     phoneNumber: "",
@@ -52,12 +55,37 @@ function DonateFormContent() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend/API
-    // For now, we'll just show the success message
-    console.log("Donation Form Data:", formData);
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      if (!APPS_SCRIPT_URLS.DONATION_FORM) {
+        throw new Error("Apps Script URL is not configured. Please add NEXT_PUBLIC_DONATION_SCRIPT_URL to your environment variables.");
+      }
+
+      const response = await fetch(APPS_SCRIPT_URLS.DONATION_FORM, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+      } else {
+        throw new Error(result.error || 'Failed to submit donation form');
+      }
+    } catch (err) {
+      console.error("Error submitting donation form:", err);
+      setError(err instanceof Error ? err.message : 'An error occurred while submitting the form. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const formatAmount = (value: string) => {
@@ -392,14 +420,37 @@ function DonateFormContent() {
               />
             </div>
 
+            {/* Error Message */}
+            {error && (
+              <div className="pt-4">
+                <div className="bg-red-50 border-2 border-red-200 rounded-lg p-4 flex items-start">
+                  <AlertCircle className="h-5 w-5 text-red-600 mr-3 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="text-red-800 font-semibold mb-1">Error</p>
+                    <p className="text-red-700 text-sm">{error}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Submit Button */}
             <div className="pt-4">
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-islamic-green to-teal-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:from-teal-700 hover:to-islamic-green transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-islamic-green to-teal-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:from-teal-700 hover:to-islamic-green transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
-                <Heart className="h-5 w-5 mr-2" />
-                Submit Donation
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    <Heart className="h-5 w-5 mr-2" />
+                    Submit Donation
+                  </>
+                )}
               </button>
             </div>
 

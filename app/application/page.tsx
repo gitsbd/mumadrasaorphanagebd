@@ -2,7 +2,8 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { FileText, BookOpen, GraduationCap, User, Phone, Mail, Calendar, MapPin, Users, CheckCircle } from "lucide-react";
+import { FileText, BookOpen, GraduationCap, User, Phone, Mail, Calendar, MapPin, Users, CheckCircle, AlertCircle } from "lucide-react";
+import { APPS_SCRIPT_URLS } from "@/config/apps-script-urls";
 
 function ApplicationForm() {
   const searchParams = useSearchParams();
@@ -23,6 +24,8 @@ function ApplicationForm() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const program = searchParams.get("program");
@@ -41,30 +44,56 @@ function ApplicationForm() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend
-    console.log("Application submitted:", formData);
-    setSubmitted(true);
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({
-        programType: "",
-        studentName: "",
-        studentAge: "",
-        fatherName: "",
-        motherName: "",
-        guardianName: "",
-        guardianRelation: "",
-        guardianPhone: "",
-        guardianEmail: "",
-        address: "",
-        previousEducation: "",
-        admissionDate: "",
-        specialNotes: "",
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      if (!APPS_SCRIPT_URLS.STUDENT_APPLICATION) {
+        throw new Error("Apps Script URL is not configured. Please add NEXT_PUBLIC_APPLICATION_SCRIPT_URL to your environment variables.");
+      }
+
+      const response = await fetch(APPS_SCRIPT_URLS.STUDENT_APPLICATION, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-    }, 3000);
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitted(true);
+        // Reset form after 3 seconds
+        setTimeout(() => {
+          setSubmitted(false);
+          setFormData({
+            programType: "",
+            studentName: "",
+            studentAge: "",
+            fatherName: "",
+            motherName: "",
+            guardianName: "",
+            guardianRelation: "",
+            guardianPhone: "",
+            guardianEmail: "",
+            address: "",
+            previousEducation: "",
+            admissionDate: "",
+            specialNotes: "",
+          });
+        }, 3000);
+      } else {
+        throw new Error(result.error || 'Failed to submit application');
+      }
+    } catch (err) {
+      console.error("Error submitting application:", err);
+      setError(err instanceof Error ? err.message : 'An error occurred while submitting the application. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -331,13 +360,34 @@ function ApplicationForm() {
                   </div>
                 </div>
 
+                {/* Error Message */}
+                {error && (
+                  <div className="border-t pt-6">
+                    <div className="bg-red-50 border-2 border-red-200 rounded-lg p-4 flex items-start mb-4">
+                      <AlertCircle className="h-5 w-5 text-red-600 mr-3 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="text-red-800 font-semibold mb-1">Error</p>
+                        <p className="text-red-700 text-sm">{error}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {/* Submit Button */}
                 <div className="border-t pt-6">
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-islamic-green to-teal-700 text-white py-4 px-8 rounded-lg font-semibold text-lg hover:from-teal-700 hover:to-islamic-green transition-all shadow-lg hover:shadow-xl"
+                    disabled={isSubmitting}
+                    className="w-full bg-gradient-to-r from-islamic-green to-teal-700 text-white py-4 px-8 rounded-lg font-semibold text-lg hover:from-teal-700 hover:to-islamic-green transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                   >
-                    Submit Application
+                    {isSubmitting ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        Submitting...
+                      </>
+                    ) : (
+                      'Submit Application'
+                    )}
                   </button>
                   <p className="text-sm text-gray-600 mt-4 text-center">
                     By submitting this form, you agree to our terms and conditions. We will contact you soon regarding the admission process.
