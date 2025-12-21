@@ -282,14 +282,14 @@ export default function HifzCourse() {
           <div className="bg-gradient-to-r from-teal-700 to-islamic-dark rounded-xl shadow-lg p-8 text-white text-center">
             <h2 className="text-3xl font-bold mb-4">Ready to Start Your Hifz Journey?</h2>
             <p className="text-xl text-teal-100 mb-6">
-              Apply now for admission to our Hifz Program
+              Enroll now for admission to our Hifz Program
             </p>
             <Link
               href="/application?program=hifz"
               className="inline-flex items-center bg-white text-teal-700 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg"
             >
               <FileText className="h-6 w-6 mr-2" />
-              Apply for Hifz Program
+              Enroll Now
             </Link>
           </div>
         </div>

@@ -66,7 +66,7 @@ export default function Courses() {
                     className="inline-flex items-center bg-white border-2 border-islamic-green text-islamic-green px-6 py-3 rounded-lg font-semibold hover:bg-islamic-light transition-colors"
                   >
                     <FileText className="h-5 w-5 mr-2" />
-                    Apply
+                    Enroll Now
                   </Link>
                 </div>
               </div>
@@ -120,7 +120,7 @@ export default function Courses() {
                     className="inline-flex items-center bg-white border-2 border-teal-700 text-teal-700 px-6 py-3 rounded-lg font-semibold hover:bg-teal-50 transition-colors"
                   >
                     <FileText className="h-5 w-5 mr-2" />
-                    Apply
+                    Enroll Now
                   </Link>
                 </div>
               </div>

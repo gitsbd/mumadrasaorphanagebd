@@ -94,7 +94,7 @@ export default function NooraniCourse() {
                 className="inline-flex items-center bg-islamic-green text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
               >
                 <FileText className="h-5 w-5 mr-2" />
-                Apply for Level 1
+                Enroll Now
               </Link>
             </div>
           </div>
@@ -124,7 +124,7 @@ export default function NooraniCourse() {
                 className="inline-flex items-center bg-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
               >
                 <FileText className="h-5 w-5 mr-2" />
-                Apply for Level 2
+                Enroll Now
               </Link>
             </div>
           </div>
@@ -154,7 +154,7 @@ export default function NooraniCourse() {
                 className="inline-flex items-center bg-teal-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-800 transition-colors"
               >
                 <FileText className="h-5 w-5 mr-2" />
-                Apply for Level 3
+                Enroll Now
               </Link>
             </div>
           </div>

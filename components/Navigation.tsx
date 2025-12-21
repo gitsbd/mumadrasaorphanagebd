@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, BookOpen, Users, GraduationCap, Heart, Info } from "lucide-react";
+import { Menu, X, BookOpen, Users, GraduationCap, Heart, Info, FileText } from "lucide-react";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,10 +43,18 @@ export default function Navigation() {
                 </Link>
               );
             })}
+            {/* Enroll Now Button */}
+            <Link
+              href="/application"
+              className="ml-4 flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2.5 rounded-lg font-semibold shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-600 transition-all duration-300 transform hover:scale-105"
+            >
+              <FileText className="h-5 w-5" />
+              <span>Enroll Now</span>
+            </Link>
             {/* Donate Button - Right End */}
             <Link
               href="/donate"
-              className="ml-4 flex items-center space-x-2 bg-gradient-to-r from-islamic-green via-teal-600 to-teal-700 text-white px-6 py-2.5 rounded-lg font-semibold shadow-lg hover:shadow-xl hover:from-teal-700 hover:via-teal-600 hover:to-islamic-green transition-all duration-300 transform hover:scale-105"
+              className="ml-2 flex items-center space-x-2 bg-gradient-to-r from-islamic-green via-teal-600 to-teal-700 text-white px-6 py-2.5 rounded-lg font-semibold shadow-lg hover:shadow-xl hover:from-teal-700 hover:via-teal-600 hover:to-islamic-green transition-all duration-300 transform hover:scale-105"
             >
               <Heart className="h-5 w-5" />
               <span>Donate</span>
@@ -82,6 +90,15 @@ export default function Navigation() {
                 </Link>
               );
             })}
+            {/* Enroll Now Button - Mobile */}
+            <Link
+              href="/application"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-600 transition-all duration-300 mt-2"
+            >
+              <FileText className="h-5 w-5" />
+              <span>Enroll Now</span>
+            </Link>
             {/* Donate Button - Mobile */}
             <Link
               href="/donate"

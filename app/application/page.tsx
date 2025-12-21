@@ -75,7 +75,7 @@ function ApplicationForm() {
           <FileText className="h-16 w-16 mx-auto mb-6" />
           <h1 className="text-5xl font-bold mb-4">Student Application</h1>
           <p className="text-xl text-teal-100 max-w-3xl mx-auto">
-            Apply for admission to our Islamic educational programs
+            Enroll now for admission to our Islamic educational programs
           </p>
         </div>
       </section>

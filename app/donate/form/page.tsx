@@ -13,7 +13,9 @@ function DonateFormContent() {
     phoneNumber: "",
     location: "",
     donationType: "",
+    currency: "BDT",
     amount: searchParams?.get("amount") || "",
+    referenceNumber: "",
     comments: "",
   });
 
@@ -92,8 +94,14 @@ function DonateFormContent() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600 font-medium">Amount:</span>
-                  <span className="text-islamic-green font-bold text-xl">BDT {parseFloat(formData.amount || "0").toLocaleString()}</span>
+                  <span className="text-islamic-green font-bold text-xl">{formData.currency} {parseFloat(formData.amount || "0").toLocaleString()}</span>
                 </div>
+                {formData.referenceNumber && (
+                  <div className="flex justify-between">
+                    <span className="text-gray-600 font-medium">Reference Number:</span>
+                    <span className="text-gray-900 font-semibold">{formData.referenceNumber}</span>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -189,7 +197,9 @@ function DonateFormContent() {
                     phoneNumber: "",
                     location: "",
                     donationType: "",
+                    currency: "BDT",
                     amount: "",
+                    referenceNumber: "",
                     comments: "",
                   });
                 }}
@@ -298,14 +308,32 @@ function DonateFormContent() {
               </select>
             </div>
 
+            {/* Currency Selection */}
+            <div>
+              <label htmlFor="currency" className="block text-sm font-semibold text-gray-700 mb-2">
+                Currency <span className="text-red-500">*</span>
+              </label>
+              <select
+                id="currency"
+                name="currency"
+                value={formData.currency}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-islamic-green focus:ring-2 focus:ring-islamic-green/20 outline-none transition-colors bg-white"
+              >
+                <option value="BDT">BDT (Bangladeshi Taka)</option>
+                <option value="USD">USD (US Dollar)</option>
+              </select>
+            </div>
+
             {/* Amount */}
             <div>
               <label htmlFor="amount" className="block text-sm font-semibold text-gray-700 mb-2">
-                Amount (BDT) <span className="text-red-500">*</span>
+                Amount ({formData.currency}) <span className="text-red-500">*</span>
               </label>
               <div className="relative">
                 <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-semibold">
-                  BDT
+                  {formData.currency}
                 </span>
                 <input
                   type="text"
@@ -323,9 +351,29 @@ function DonateFormContent() {
               </div>
               {formData.amount && (
                 <p className="mt-2 text-sm text-gray-600">
-                  Amount: BDT {parseFloat(formData.amount || "0").toLocaleString()}
+                  Amount: {formData.currency} {parseFloat(formData.amount || "0").toLocaleString()}
                 </p>
               )}
+            </div>
+
+            {/* Reference Number (bKash or Zelle) */}
+            <div>
+              <label htmlFor="referenceNumber" className="block text-sm font-semibold text-gray-700 mb-2">
+                {formData.currency === "BDT" ? "bKash" : "Zelle"} Reference Number <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="referenceNumber"
+                name="referenceNumber"
+                value={formData.referenceNumber}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-islamic-green focus:ring-2 focus:ring-islamic-green/20 outline-none transition-colors"
+                placeholder={formData.currency === "BDT" ? "Enter bKash transaction reference number" : "Enter Zelle transaction reference number"}
+              />
+              <p className="mt-2 text-xs text-gray-500">
+                Please enter the transaction reference number from your {formData.currency === "BDT" ? "bKash" : "Zelle"} payment.
+              </p>
             </div>
 
             {/* Comments */}
