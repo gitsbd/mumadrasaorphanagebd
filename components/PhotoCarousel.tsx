@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const photos = [
+const basePhotos = [
   "/photo/image/students-1.jpeg",
   "/photo/image/students-2.jpeg",
   "/photo/image/students-3.jpg",
@@ -12,6 +12,24 @@ const photos = [
 ] as const;
 
 export default function PhotoCarousel() {
+  // Detect basePath from window location (for GitHub Pages)
+  const [basePath, setBasePath] = useState('');
+  
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const pathname = window.location.pathname;
+      if (pathname.startsWith('/mumadrasaorphanagebd')) {
+        setBasePath('/mumadrasaorphanagebd');
+      }
+    }
+  }, []);
+
+  // Get photos with correct basePath (memoized to avoid recreation)
+  const photos = useMemo(() => 
+    basePhotos.map(photo => `${basePath}${photo}`) as readonly string[],
+    [basePath]
+  );
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [imageError, setImageError] = useState(false);
@@ -25,7 +43,7 @@ export default function PhotoCarousel() {
     }, 4000); // Change image every 4 seconds
 
     return () => clearInterval(interval);
-  }, [isAutoPlaying]);
+  }, [isAutoPlaying, photos.length]);
 
   const goToPrevious = () => {
     setIsAutoPlaying(false);
@@ -63,6 +81,7 @@ export default function PhotoCarousel() {
             priority={currentIndex === 0}
             sizes="(max-width: 768px) 100vw, 50vw"
             quality={90}
+            unoptimized={true}
             onError={() => setImageError(true)}
             onLoad={() => setImageError(false)}
           />
@@ -110,4 +129,3 @@ export default function PhotoCarousel() {
     </div>
   );
 }
-

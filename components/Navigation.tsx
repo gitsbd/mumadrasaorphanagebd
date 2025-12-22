@@ -2,11 +2,21 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, BookOpen, Users, GraduationCap, Heart, Info, FileText } from "lucide-react";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [basePath, setBasePath] = useState('');
+  
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const pathname = window.location.pathname;
+      if (pathname.startsWith('/mumadrasaorphanagebd')) {
+        setBasePath('/mumadrasaorphanagebd');
+      }
+    }
+  }, []);
 
   const navItems = [
     { href: "/", label: "Home", icon: BookOpen },
@@ -22,12 +32,14 @@ export default function Navigation() {
           <Link href="/" className="flex items-center space-x-3">
             <div className="relative h-12 w-12 sm:h-14 sm:w-14 flex-shrink-0">
               <Image
-                src="/logo.png"
+                src={basePath ? `${basePath}/logo.png` : '/logo.png'}
                 alt="Madinatul Uloom Logo"
                 fill
                 className="object-contain"
                 priority
                 sizes="(max-width: 640px) 48px, 56px"
+                unoptimized={true}
+                key={basePath} // Force re-render when basePath changes
               />
             </div>
             <div className="hidden sm:block">
