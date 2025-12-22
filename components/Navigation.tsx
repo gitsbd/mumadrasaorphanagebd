@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { Menu, X, BookOpen, Users, GraduationCap, Heart, Info, FileText } from "lucide-react";
 
@@ -19,8 +20,15 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
-            <div className="bg-islamic-green p-2 rounded-lg">
-              <BookOpen className="h-8 w-8 text-white" />
+            <div className="relative h-12 w-12 sm:h-14 sm:w-14 flex-shrink-0">
+              <Image
+                src="/logo.png"
+                alt="Madinatul Uloom Logo"
+                fill
+                className="object-contain"
+                priority
+                sizes="(max-width: 640px) 48px, 56px"
+              />
             </div>
             <div className="hidden sm:block">
               <h1 className="text-xl font-bold text-gray-900">Madinatul Uloom</h1>

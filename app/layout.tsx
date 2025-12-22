@@ -7,6 +7,11 @@ export const metadata: Metadata = {
   title: "Madinatul Uloom Madrasa & Orphanage | Islamic Education in Bangladesh",
   description: "A non-profit Islamic educational institution providing free education to orphans and underprivileged children in Nakla, Sherpur, Mymensingh, Bangladesh.",
   keywords: "Islamic education, Madrasa, Orphanage, Bangladesh, Quran memorization, Hifz, Noorani program, Sherpur, Mymensingh",
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BookOpen, Users, GraduationCap, Heart, Star, Award, Target, Shield } from "lucide-react";
+import PhotoCarousel from "@/components/PhotoCarousel";
 
 export default function Home() {
   const coreValues = [
@@ -53,32 +54,39 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-islamic-green via-teal-700 to-islamic-dark text-white py-20 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center space-y-6">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4">
-              <span className="arabic-text text-4xl md:text-5xl">مدينة العلوم</span>
-              <br />
-              Madinatul Uloom
-            </h1>
-            <p className="text-2xl md:text-3xl font-semibold">Madrasa & Orphanage</p>
-            <p className="text-xl md:text-2xl text-teal-100 max-w-3xl mx-auto">
-              An Islamic Educational Institution Serving Orphans and Underprivileged Children
-            </p>
-            <p className="text-lg text-teal-50 max-w-2xl mx-auto">
-              Kaya Kori (Baligange Bazar), Nakla, Sherpur, Mymensingh, Bangladesh
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-              <Link
-                href="/donate"
-                className="bg-white text-islamic-green px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
-              >
-                Support Our Mission
-              </Link>
-              <Link
-                href="/about"
-                className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-islamic-green transition-colors"
-              >
-                Learn More
-              </Link>
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Left Side - Text Content */}
+            <div className="text-center md:text-left space-y-6">
+              <h1 className="text-5xl md:text-6xl font-bold mb-4">
+                <span className="arabic-text text-4xl md:text-5xl">مدينة العلوم</span>
+                <br />
+                Madinatul Uloom
+              </h1>
+              <p className="text-2xl md:text-3xl font-semibold">Madrasa & Orphanage</p>
+              <p className="text-xl md:text-2xl text-teal-100 max-w-3xl mx-auto md:mx-0">
+                An Islamic Educational Institution Serving Orphans and Underprivileged Children
+              </p>
+              <p className="text-lg text-teal-50 max-w-2xl mx-auto md:mx-0">
+                Kaya Kori (Baligange Bazar), Nakla, Sherpur, Mymensingh, Bangladesh
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mt-8">
+                <Link
+                  href="/donate"
+                  className="bg-white text-islamic-green px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
+                >
+                  Support Our Mission
+                </Link>
+                <Link
+                  href="/about"
+                  className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-islamic-green transition-colors"
+                >
+                  Learn More
+                </Link>
+              </div>
+            </div>
+            {/* Right Side - Photo Carousel */}
+            <div className="w-full h-full flex items-center justify-center">
+              <PhotoCarousel />
             </div>
           </div>
         </div>
