@@ -12,6 +12,10 @@ const basePhotos = [
 ] as const;
 
 export default function PhotoCarousel() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [imageError, setImageError] = useState(false);
+  
   // Detect basePath from window location (for GitHub Pages)
   const [basePath, setBasePath] = useState('');
   
@@ -25,18 +29,15 @@ export default function PhotoCarousel() {
   }, []);
 
   // Get photos with correct basePath (memoized to avoid recreation)
-  const photos = useMemo(() => 
-    basePhotos.map(photo => `${basePath}${photo}`) as readonly string[],
-    [basePath]
-  );
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [imageError, setImageError] = useState(false);
+  const photos = useMemo(() => {
+    return basePhotos.map(photo => {
+      return basePath ? `${basePath}${photo}` : photo;
+    }) as readonly string[];
+  }, [basePath]);
 
   // Auto-play functionality
   useEffect(() => {
-    if (!isAutoPlaying) return;
+    if (!isAutoPlaying || photos.length === 0) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % photos.length);
@@ -48,19 +49,25 @@ export default function PhotoCarousel() {
   const goToPrevious = () => {
     setIsAutoPlaying(false);
     setImageError(false);
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + photos.length) % photos.length);
+    if (photos.length > 0) {
+      setCurrentIndex((prevIndex) => (prevIndex - 1 + photos.length) % photos.length);
+    }
   };
 
   const goToNext = () => {
     setIsAutoPlaying(false);
     setImageError(false);
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % photos.length);
+    if (photos.length > 0) {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % photos.length);
+    }
   };
 
   const goToSlide = (index: number) => {
-    setIsAutoPlaying(false);
-    setImageError(false);
-    setCurrentIndex(index);
+    if (index >= 0 && index < photos.length) {
+      setIsAutoPlaying(false);
+      setImageError(false);
+      setCurrentIndex(index);
+    }
   };
 
   // Reset error when index changes
@@ -68,17 +75,21 @@ export default function PhotoCarousel() {
     setImageError(false);
   }, [currentIndex]);
 
+  // Ensure currentIndex is valid
+  const safeIndex = photos.length > 0 ? Math.min(currentIndex, photos.length - 1) : 0;
+  const currentPhoto = photos.length > 0 ? photos[safeIndex] : basePhotos[0];
+
   return (
     <div className="relative w-full min-h-[400px] md:min-h-[500px] rounded-xl overflow-hidden shadow-2xl">
       {/* Main Image */}
       <div className="relative w-full h-[400px] md:h-[500px] bg-gray-200">
-        {!imageError ? (
+        {currentPhoto && !imageError ? (
           <Image
-            src={photos[currentIndex]}
-            alt={`Students photo ${currentIndex + 1}`}
+            src={currentPhoto}
+            alt={`Students photo ${safeIndex + 1}`}
             fill
             className="object-cover"
-            priority={currentIndex === 0}
+            priority={safeIndex === 0}
             sizes="(max-width: 768px) 100vw, 50vw"
             quality={90}
             unoptimized={true}
@@ -97,6 +108,7 @@ export default function PhotoCarousel() {
         onClick={goToPrevious}
         className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-islamic-green p-2 rounded-full shadow-lg transition-all z-10"
         aria-label="Previous image"
+        disabled={photos.length === 0}
       >
         <ChevronLeft className="h-6 w-6" />
       </button>
@@ -104,6 +116,7 @@ export default function PhotoCarousel() {
         onClick={goToNext}
         className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-islamic-green p-2 rounded-full shadow-lg transition-all z-10"
         aria-label="Next image"
+        disabled={photos.length === 0}
       >
         <ChevronRight className="h-6 w-6" />
       </button>
@@ -115,7 +128,7 @@ export default function PhotoCarousel() {
             key={index}
             onClick={() => goToSlide(index)}
             className={`w-3 h-3 rounded-full transition-all ${
-              index === currentIndex
+              index === safeIndex
                 ? "bg-white w-8"
                 : "bg-white/50 hover:bg-white/75"
             }`}

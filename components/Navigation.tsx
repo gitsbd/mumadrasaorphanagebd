@@ -31,16 +31,27 @@ export default function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
             <div className="relative h-12 w-12 sm:h-14 sm:w-14 flex-shrink-0">
-              <Image
-                src={basePath ? `${basePath}/logo.png` : '/logo.png'}
-                alt="Madinatul Uloom Logo"
-                fill
-                className="object-contain"
-                priority
-                sizes="(max-width: 640px) 48px, 56px"
-                unoptimized={true}
-                key={basePath} // Force re-render when basePath changes
-              />
+              {basePath ? (
+                <Image
+                  src={`${basePath}/logo.png`}
+                  alt="Madinatul Uloom Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                  sizes="(max-width: 640px) 48px, 56px"
+                  unoptimized={true}
+                />
+              ) : (
+                <Image
+                  src="/logo.png"
+                  alt="Madinatul Uloom Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                  sizes="(max-width: 640px) 48px, 56px"
+                  unoptimized={true}
+                />
+              )}
             </div>
             <div className="hidden sm:block">
               <h1 className="text-xl font-bold text-gray-900">Madinatul Uloom</h1>
