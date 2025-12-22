@@ -63,7 +63,70 @@ function CareerApplyContent() {
       // Ensure URL ends with /exec (required for Google Apps Script web apps)
       const finalUrl = scriptUrl.endsWith('/exec') ? scriptUrl : scriptUrl.replace(/\/dev$/, '/exec');
 
-      // Prepare form data (excluding file object, just send file name)
+      // Convert file to base64 if present
+      let resumeBase64 = '';
+      let resumeFileName = '';
+      let resumeMimeType = '';
+      
+      if (formData.resume) {
+        resumeFileName = formData.resume.name;
+        resumeMimeType = formData.resume.type || '';
+        
+        // Check file size (limit to 10MB to avoid issues)
+        const maxSize = 10 * 1024 * 1024; // 10MB
+        if (formData.resume.size > maxSize) {
+          throw new Error(`File size (${(formData.resume.size / 1024 / 1024).toFixed(2)}MB) exceeds the maximum allowed size of 10MB. Please compress your file or use a smaller file.`);
+        }
+        
+        // Determine MIME type if not detected
+        if (!resumeMimeType) {
+          const fileName = resumeFileName.toLowerCase();
+          if (fileName.endsWith('.pdf')) {
+            resumeMimeType = 'application/pdf';
+          } else if (fileName.endsWith('.doc')) {
+            resumeMimeType = 'application/msword';
+          } else if (fileName.endsWith('.docx')) {
+            resumeMimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+          } else {
+            resumeMimeType = 'application/pdf'; // Default
+          }
+        }
+        
+        // Convert file to base64
+        resumeBase64 = await new Promise<string>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            try {
+              const result = reader.result as string;
+              if (!result) {
+                reject(new Error('Failed to read file'));
+                return;
+              }
+              // Remove data URL prefix (e.g., "data:application/pdf;base64,")
+              const base64 = result.split(',')[1];
+              if (!base64) {
+                reject(new Error('Failed to extract base64 data from file'));
+                return;
+              }
+              console.log('File converted to base64. Size:', base64.length, 'characters');
+              resolve(base64);
+            } catch (err) {
+              reject(err);
+            }
+          };
+          reader.onerror = (error) => {
+            console.error('FileReader error:', error);
+            reject(new Error('Failed to read file: ' + error));
+          };
+          reader.readAsDataURL(formData.resume!);
+        });
+        
+        if (!resumeBase64 || resumeBase64.length === 0) {
+          throw new Error('Failed to convert file to base64');
+        }
+      }
+
+      // Prepare form data including base64 file
       const submitData = {
         fullName: formData.fullName,
         email: formData.email,
@@ -74,7 +137,9 @@ function CareerApplyContent() {
         experience: formData.experience,
         certifications: formData.certifications,
         coverLetter: formData.coverLetter,
-        resumeFileName: formData.resume ? formData.resume.name : '',
+        resumeFileName: resumeFileName,
+        resumeBase64: resumeBase64,
+        resumeMimeType: resumeMimeType,
       };
 
       // Use fetch with no-cors mode for Google Apps Script
