@@ -2,12 +2,15 @@
 
 import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { FileText, CheckCircle, ArrowLeft, Shield, Mail, Phone, MapPin, Upload, Briefcase } from "lucide-react";
+import { FileText, CheckCircle, ArrowLeft, Shield, Mail, Phone, MapPin, Upload, Briefcase, AlertCircle } from "lucide-react";
 import Link from "next/link";
+import { APPS_SCRIPT_URLS } from "@/config/apps-script-urls";
 
 function CareerApplyContent() {
   const searchParams = useSearchParams();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -45,11 +48,72 @@ function CareerApplyContent() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend/API
-    console.log("Career Application Form Data:", formData);
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      const scriptUrl = APPS_SCRIPT_URLS.CAREER_APPLICATION;
+      
+      if (!scriptUrl || scriptUrl.trim() === '') {
+        throw new Error("Apps Script URL is not configured. Please add NEXT_PUBLIC_CAREER_SCRIPT_URL to your .env.local file and restart the development server.");
+      }
+
+      // Ensure URL ends with /exec (required for Google Apps Script web apps)
+      const finalUrl = scriptUrl.endsWith('/exec') ? scriptUrl : scriptUrl.replace(/\/dev$/, '/exec');
+
+      // Prepare form data (excluding file object, just send file name)
+      const submitData = {
+        fullName: formData.fullName,
+        email: formData.email,
+        phoneNumber: formData.phoneNumber,
+        address: formData.address,
+        position: formData.position,
+        education: formData.education,
+        experience: formData.experience,
+        certifications: formData.certifications,
+        coverLetter: formData.coverLetter,
+        resumeFileName: formData.resume ? formData.resume.name : '',
+      };
+
+      // Use fetch with no-cors mode for Google Apps Script
+      // This bypasses CORS but we can't read the response
+      // The Apps Script will still process the request
+      await fetch(finalUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submitData),
+      });
+
+      // With no-cors mode, we can't verify the response
+      // But if no error was thrown, assume success
+      // The Apps Script will process the request and send email
+      setIsSubmitted(true);
+    } catch (err) {
+      console.error("Error submitting career application:", err);
+      
+      let errorMessage = 'An error occurred while submitting the application. ';
+      
+      if (err instanceof TypeError) {
+        if (err.message.includes('fetch')) {
+          errorMessage = `Network error: ${err.message}. Please check:\n1. Your internet connection\n2. The Apps Script URL is correct (should end with /exec)\n3. The Apps Script is deployed with "Anyone" access\n4. Check browser console (F12) for more details`;
+        } else {
+          errorMessage = `Error: ${err.message}. Please check the browser console (F12) for details.`;
+        }
+      } else if (err instanceof Error) {
+        errorMessage = err.message;
+      } else {
+        errorMessage += 'Please check the browser console (F12) for details.';
+      }
+      
+      setError(errorMessage);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
@@ -380,14 +444,37 @@ function CareerApplyContent() {
               )}
             </div>
 
+            {/* Error Message */}
+            {error && (
+              <div className="pt-4">
+                <div className="bg-red-50 border-2 border-red-200 rounded-lg p-4 flex items-start">
+                  <AlertCircle className="h-5 w-5 text-red-600 mr-3 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="text-red-800 font-semibold mb-1">Error</p>
+                    <p className="text-red-700 text-sm whitespace-pre-line">{error}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Submit Button */}
             <div className="pt-4">
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-islamic-green to-teal-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:from-teal-700 hover:to-islamic-green transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-islamic-green to-teal-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:from-teal-700 hover:to-islamic-green transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
-                <FileText className="h-5 w-5 mr-2" />
-                Submit Application
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    <FileText className="h-5 w-5 mr-2" />
+                    Submit Application
+                  </>
+                )}
               </button>
             </div>
 

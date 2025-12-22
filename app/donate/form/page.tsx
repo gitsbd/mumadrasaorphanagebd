@@ -16,7 +16,7 @@ function DonateFormContent() {
     phoneNumber: "",
     location: "",
     donationType: "",
-    currency: "BDT",
+    currency: (searchParams?.get("currency") === "USD" ? "USD" : "BDT") as "BDT" | "USD",
     amount: searchParams?.get("amount") || "",
     referenceNumber: "",
     comments: "",
@@ -61,28 +61,52 @@ function DonateFormContent() {
     setError(null);
 
     try {
-      if (!APPS_SCRIPT_URLS.DONATION_FORM) {
-        throw new Error("Apps Script URL is not configured. Please add NEXT_PUBLIC_DONATION_SCRIPT_URL to your environment variables.");
+      const scriptUrl = APPS_SCRIPT_URLS.DONATION_FORM;
+      
+      if (!scriptUrl || scriptUrl.trim() === '') {
+        throw new Error("Apps Script URL is not configured. Please add NEXT_PUBLIC_DONATION_SCRIPT_URL to your .env.local file and restart the development server.");
       }
 
-      const response = await fetch(APPS_SCRIPT_URLS.DONATION_FORM, {
+      // Ensure URL ends with /exec (required for Google Apps Script web apps)
+      const finalUrl = scriptUrl.endsWith('/exec') ? scriptUrl : scriptUrl.replace(/\/dev$/, '/exec');
+
+      console.log('Submitting to:', finalUrl);
+      console.log('Form data:', formData);
+
+      // Use fetch with no-cors mode for Google Apps Script
+      // This bypasses CORS but we can't read the response
+      // The Apps Script will still process the request
+      await fetch(finalUrl, {
         method: 'POST',
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
-
-      if (result.success) {
-        setIsSubmitted(true);
-      } else {
-        throw new Error(result.error || 'Failed to submit donation form');
-      }
+      // With no-cors mode, we can't verify the response
+      // But if no error was thrown, assume success
+      // The Apps Script will process the request and send email
+      setIsSubmitted(true);
     } catch (err) {
       console.error("Error submitting donation form:", err);
-      setError(err instanceof Error ? err.message : 'An error occurred while submitting the form. Please try again.');
+      
+      let errorMessage = 'An error occurred while submitting the form. ';
+      
+      if (err instanceof TypeError) {
+        if (err.message.includes('fetch')) {
+          errorMessage = `Network error: ${err.message}. Please check:\n1. Your internet connection\n2. The Apps Script URL is correct (should end with /exec)\n3. The Apps Script is deployed with "Anyone" access\n4. Check browser console (F12) for more details`;
+        } else {
+          errorMessage = `Error: ${err.message}. Please check the browser console (F12) for details.`;
+        }
+      } else if (err instanceof Error) {
+        errorMessage = err.message;
+      } else {
+        errorMessage += 'Please check the browser console (F12) for details.';
+      }
+      
+      setError(errorMessage);
     } finally {
       setIsSubmitting(false);
     }

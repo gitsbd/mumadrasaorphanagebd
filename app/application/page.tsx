@@ -50,47 +50,72 @@ function ApplicationForm() {
     setError(null);
 
     try {
-      if (!APPS_SCRIPT_URLS.STUDENT_APPLICATION) {
-        throw new Error("Apps Script URL is not configured. Please add NEXT_PUBLIC_APPLICATION_SCRIPT_URL to your environment variables.");
+      const scriptUrl = APPS_SCRIPT_URLS.STUDENT_APPLICATION;
+      
+      if (!scriptUrl || scriptUrl.trim() === '') {
+        throw new Error("Apps Script URL is not configured. Please add NEXT_PUBLIC_APPLICATION_SCRIPT_URL to your .env.local file and restart the development server.");
       }
 
-      const response = await fetch(APPS_SCRIPT_URLS.STUDENT_APPLICATION, {
+      // Ensure URL ends with /exec (required for Google Apps Script web apps)
+      const finalUrl = scriptUrl.endsWith('/exec') ? scriptUrl : scriptUrl.replace(/\/dev$/, '/exec');
+
+      console.log('Submitting to:', finalUrl);
+      console.log('Form data:', formData);
+
+      // Use fetch with no-cors mode for Google Apps Script
+      // This bypasses CORS but we can't read the response
+      // The Apps Script will still process the request
+      await fetch(finalUrl, {
         method: 'POST',
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
-
-      if (result.success) {
-        setSubmitted(true);
-        // Reset form after 3 seconds
-        setTimeout(() => {
-          setSubmitted(false);
-          setFormData({
-            programType: "",
-            studentName: "",
-            studentAge: "",
-            fatherName: "",
-            motherName: "",
-            guardianName: "",
-            guardianRelation: "",
-            guardianPhone: "",
-            guardianEmail: "",
-            address: "",
-            previousEducation: "",
-            admissionDate: "",
-            specialNotes: "",
-          });
-        }, 3000);
-      } else {
-        throw new Error(result.error || 'Failed to submit application');
-      }
+      // With no-cors mode, we can't verify the response
+      // But if no error was thrown, assume success
+      // The Apps Script will process the request and send email
+      setSubmitted(true);
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({
+          programType: "",
+          studentName: "",
+          studentAge: "",
+          fatherName: "",
+          motherName: "",
+          guardianName: "",
+          guardianRelation: "",
+          guardianPhone: "",
+          guardianEmail: "",
+          address: "",
+          previousEducation: "",
+          admissionDate: "",
+          specialNotes: "",
+        });
+      }, 3000);
     } catch (err) {
       console.error("Error submitting application:", err);
-      setError(err instanceof Error ? err.message : 'An error occurred while submitting the application. Please try again.');
+      
+      let errorMessage = 'An error occurred while submitting the application. ';
+      
+      if (err instanceof TypeError) {
+        if (err.message.includes('fetch')) {
+          errorMessage = `Network error: ${err.message}. Please check:\n1. Your internet connection\n2. The Apps Script URL is correct (should end with /exec)\n3. The Apps Script is deployed with "Anyone" access\n4. Check browser console (F12) for more details`;
+        } else {
+          errorMessage = `Error: ${err.message}. Please check the browser console (F12) for details.`;
+        }
+      } else if (err instanceof Error) {
+        errorMessage = err.message;
+      } else {
+        errorMessage += 'Please check the browser console (F12) for details.';
+      }
+      
+      setError(errorMessage);
     } finally {
       setIsSubmitting(false);
     }

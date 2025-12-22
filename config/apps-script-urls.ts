@@ -22,5 +22,9 @@ export const APPS_SCRIPT_URLS = {
   // Student Application Form Apps Script URL
   // Replace with your deployed web app URL
   STUDENT_APPLICATION: process.env.NEXT_PUBLIC_APPLICATION_SCRIPT_URL || '',
+  
+  // Career Application Form Apps Script URL
+  // Replace with your deployed web app URL
+  CAREER_APPLICATION: process.env.NEXT_PUBLIC_CAREER_SCRIPT_URL || '',
 };
 

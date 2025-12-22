@@ -6,6 +6,16 @@ import { useState } from "react";
 
 export default function Donate() {
   const [customAmount, setCustomAmount] = useState("");
+  const [currency, setCurrency] = useState<"BDT" | "USD">("BDT");
+  
+  // Conversion rate: approximately 110 BDT = 1 USD
+  const conversionRate = 110;
+  
+  const convertAmount = (amount: number, from: "BDT" | "USD", to: "BDT" | "USD"): number => {
+    if (from === to) return amount;
+    if (from === "BDT" && to === "USD") return amount / conversionRate;
+    return amount * conversionRate; // USD to BDT
+  };
   const donationTypes = [
     {
       icon: Heart,
@@ -173,7 +183,10 @@ export default function Donate() {
                 <div className="space-y-4">
                   <div className="p-4 bg-white rounded-lg shadow">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-gray-700 font-semibold">BDT 1,000</span>
+                      <div className="flex flex-col">
+                        <span className="text-gray-700 font-semibold">BDT 1,000</span>
+                        <span className="text-gray-600 text-sm">(≈ USD 9)</span>
+                      </div>
                       <span className="text-islamic-green font-semibold">1 Student Monthly Meals</span>
                     </div>
                     <Link
@@ -186,7 +199,10 @@ export default function Donate() {
                   </div>
                   <div className="p-4 bg-white rounded-lg shadow">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-gray-700 font-semibold">BDT 3,000</span>
+                      <div className="flex flex-col">
+                        <span className="text-gray-700 font-semibold">BDT 3,000</span>
+                        <span className="text-gray-600 text-sm">(≈ USD 27)</span>
+                      </div>
                       <span className="text-islamic-green font-semibold">1 Student Monthly Education</span>
                     </div>
                     <Link
@@ -199,7 +215,10 @@ export default function Donate() {
                   </div>
                   <div className="p-4 bg-white rounded-lg shadow">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-gray-700 font-semibold">BDT 4,000 - 5,000</span>
+                      <div className="flex flex-col">
+                        <span className="text-gray-700 font-semibold">BDT 4,000 - 5,000</span>
+                        <span className="text-gray-600 text-sm">(≈ USD 36 - 45)</span>
+                      </div>
                       <span className="text-islamic-green font-semibold">1 Student Monthly Expenses (Including everything)</span>
                     </div>
                     <Link
@@ -212,7 +231,10 @@ export default function Donate() {
                   </div>
                   <div className="p-4 bg-white rounded-lg shadow">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-gray-700 font-semibold">BDT 8,000</span>
+                      <div className="flex flex-col">
+                        <span className="text-gray-700 font-semibold">BDT 8,000</span>
+                        <span className="text-gray-600 text-sm">(≈ USD 73)</span>
+                      </div>
                       <span className="text-islamic-green font-semibold">Yearly Complete Uniform & Supplies</span>
                     </div>
                     <Link
@@ -225,7 +247,10 @@ export default function Donate() {
                   </div>
                   <div className="p-4 bg-white rounded-lg shadow">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-gray-700 font-semibold">BDT 20,000</span>
+                      <div className="flex flex-col">
+                        <span className="text-gray-700 font-semibold">BDT 20,000</span>
+                        <span className="text-gray-600 text-sm">(≈ USD 182)</span>
+                      </div>
                       <span className="text-islamic-green font-semibold">1 Student Yearly Sponsorship</span>
                     </div>
                     <Link
@@ -252,14 +277,29 @@ export default function Donate() {
               </div>
               
               <div className="bg-gradient-to-br from-islamic-light to-white rounded-lg p-8 border-2 border-islamic-green/20">
+                <div className="mb-4">
+                  <label htmlFor="currency-select" className="block text-sm font-semibold text-gray-700 mb-2">
+                    Select Currency
+                  </label>
+                  <select
+                    id="currency-select"
+                    value={currency}
+                    onChange={(e) => setCurrency(e.target.value as "BDT" | "USD")}
+                    className="w-full sm:w-auto px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-islamic-green focus:ring-2 focus:ring-islamic-green/20 outline-none transition-colors bg-white"
+                  >
+                    <option value="BDT">BDT (Bangladeshi Taka)</option>
+                    <option value="USD">USD (US Dollar)</option>
+                  </select>
+                </div>
+                
                 <div className="flex flex-col sm:flex-row gap-4 items-center">
                   <div className="flex-1 w-full">
                     <label htmlFor="amount" className="block text-sm font-semibold text-gray-700 mb-2">
-                      Enter Amount (BDT)
+                      Enter Amount ({currency})
                     </label>
                     <div className="relative">
                       <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-semibold">
-                        BDT
+                        {currency}
                       </span>
                       <input
                         type="number"
@@ -268,13 +308,22 @@ export default function Donate() {
                         onChange={(e) => setCustomAmount(e.target.value)}
                         placeholder="Enter amount"
                         min="1"
+                        step={currency === "USD" ? "0.01" : "1"}
                         className="w-full pl-16 pr-4 py-4 border-2 border-gray-300 rounded-lg focus:border-islamic-green focus:ring-2 focus:ring-islamic-green/20 outline-none text-lg font-semibold"
                       />
                     </div>
+                    {customAmount && parseFloat(customAmount) > 0 && (
+                      <p className="mt-2 text-sm text-gray-600">
+                        ≈ {currency === "BDT" 
+                          ? `USD ${convertAmount(parseFloat(customAmount), "BDT", "USD").toFixed(2)}`
+                          : `BDT ${Math.round(convertAmount(parseFloat(customAmount), "USD", "BDT")).toLocaleString()}`
+                        }
+                      </p>
+                    )}
                   </div>
                   <div className="w-full sm:w-auto">
                     <Link
-                      href={customAmount && parseFloat(customAmount) > 0 ? `/donate/form?amount=${customAmount}` : "/donate/form"}
+                      href={customAmount && parseFloat(customAmount) > 0 ? `/donate/form?amount=${customAmount}&currency=${currency}` : "/donate/form"}
                       className="inline-flex items-center justify-center w-full sm:w-auto bg-gradient-to-r from-islamic-green to-teal-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:from-teal-700 hover:to-islamic-green transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                     >
                       <Heart className="h-5 w-5 mr-2" />
@@ -286,7 +335,15 @@ export default function Donate() {
                 {customAmount && parseFloat(customAmount) > 0 && (
                   <div className="mt-6 p-4 bg-islamic-green/10 rounded-lg border border-islamic-green/30">
                     <p className="text-center text-gray-700">
-                      <span className="font-semibold text-islamic-green">BDT {parseFloat(customAmount).toLocaleString()}</span>
+                      <span className="font-semibold text-islamic-green">
+                        {currency} {parseFloat(customAmount).toLocaleString(undefined, { minimumFractionDigits: currency === "USD" ? 2 : 0, maximumFractionDigits: currency === "USD" ? 2 : 0 })}
+                      </span>
+                      {currency === "BDT" && (
+                        <span className="text-gray-600"> (≈ USD {convertAmount(parseFloat(customAmount), "BDT", "USD").toFixed(2)})</span>
+                      )}
+                      {currency === "USD" && (
+                        <span className="text-gray-600"> (≈ BDT {Math.round(convertAmount(parseFloat(customAmount), "USD", "BDT")).toLocaleString()})</span>
+                      )}
                       {" "}will help support our students and mission. Thank you for your generosity!
                     </p>
                   </div>

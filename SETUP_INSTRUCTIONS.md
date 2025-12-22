@@ -22,18 +22,28 @@ This document provides quick setup instructions for integrating Google Apps Scri
 5. Set "Who has access" to **Anyone**
 6. Copy the Web App URL
 
-### 2. Configure Environment Variables
+### 2. Set Up Career Application Apps Script
+
+1. Open: https://docs.google.com/spreadsheets/d/10CmPRD3DUEnMJBG0uWML4aqju1dz7JJqTVqJq0u2S5U
+2. Extensions → Apps Script
+3. Paste code from `google-apps-script/career-application.gs`
+4. Deploy → New deployment → Web app
+5. Set "Who has access" to **Anyone**
+6. Copy the Web App URL
+
+### 3. Configure Environment Variables
 
 Create or update `.env.local`:
 
 ```env
 NEXT_PUBLIC_DONATION_SCRIPT_URL=https://script.google.com/macros/s/YOUR_DONATION_SCRIPT_ID/exec
 NEXT_PUBLIC_APPLICATION_SCRIPT_URL=https://script.google.com/macros/s/YOUR_APPLICATION_SCRIPT_ID/exec
+NEXT_PUBLIC_CAREER_SCRIPT_URL=https://script.google.com/macros/s/YOUR_CAREER_SCRIPT_ID/exec
 ```
 
-Replace `YOUR_DONATION_SCRIPT_ID` and `YOUR_APPLICATION_SCRIPT_ID` with your actual script IDs.
+Replace `YOUR_DONATION_SCRIPT_ID`, `YOUR_APPLICATION_SCRIPT_ID`, and `YOUR_CAREER_SCRIPT_ID` with your actual script IDs.
 
-### 3. Restart Development Server
+### 4. Restart Development Server
 
 ```bash
 npm run dev
@@ -45,6 +55,7 @@ npm run dev
 ✅ Email notifications sent to mu.madrasaorphanage.bd@gmail.com  
 ✅ Error handling and loading states  
 ✅ No API routes needed - direct Apps Script integration  
+✅ Supports: Donation Form, Student Application, Career Application  
 
 ## Detailed Instructions
 
