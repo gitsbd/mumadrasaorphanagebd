@@ -271,7 +271,7 @@ function DonateFormContent() {
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <Link
+          <BaseLink
             href="/donate"
             className="inline-flex items-center text-islamic-green hover:text-teal-700 mb-4 transition-colors"
           >
