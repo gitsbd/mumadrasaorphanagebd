@@ -75,8 +75,7 @@ export default function LegalIndex() {
             {legalPages.map((page) => {
               const Icon = page.icon;
               return (
-                <Link
-                  key={page.href}
+                <BaseLink                   key={page.href}
                   href={page.href}
                   className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 group"
                 >

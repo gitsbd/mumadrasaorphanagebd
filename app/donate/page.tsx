@@ -205,7 +205,7 @@ export default function Donate() {
                       </div>
                       <span className="text-islamic-green font-semibold">1 Student Monthly Education</span>
                     </div>
-                    <Link
+                    <BaseLink
                       href="/donate/form?amount=3000"
                       className="inline-flex items-center text-sm bg-islamic-green text-white px-4 py-2 rounded-lg font-medium hover:bg-teal-700 transition-colors"
                     >
@@ -221,7 +221,7 @@ export default function Donate() {
                       </div>
                       <span className="text-islamic-green font-semibold">1 Student Monthly Expenses (Including everything)</span>
                     </div>
-                    <Link
+                    <BaseLink
                       href="/donate/form?amount=4500"
                       className="inline-flex items-center text-sm bg-islamic-green text-white px-4 py-2 rounded-lg font-medium hover:bg-teal-700 transition-colors"
                     >
@@ -237,7 +237,7 @@ export default function Donate() {
                       </div>
                       <span className="text-islamic-green font-semibold">Yearly Complete Uniform & Supplies</span>
                     </div>
-                    <Link
+                    <BaseLink
                       href="/donate/form?amount=8000"
                       className="inline-flex items-center text-sm bg-islamic-green text-white px-4 py-2 rounded-lg font-medium hover:bg-teal-700 transition-colors"
                     >
@@ -253,7 +253,7 @@ export default function Donate() {
                       </div>
                       <span className="text-islamic-green font-semibold">1 Student Yearly Sponsorship</span>
                     </div>
-                    <Link
+                    <BaseLink
                       href="/donate/form?amount=20000"
                       className="inline-flex items-center text-sm bg-islamic-green text-white px-4 py-2 rounded-lg font-medium hover:bg-teal-700 transition-colors"
                     >
@@ -322,7 +322,7 @@ export default function Donate() {
                     )}
                   </div>
                   <div className="w-full sm:w-auto">
-                    <Link
+                    <BaseLink
                       href={customAmount && parseFloat(customAmount) > 0 ? `/donate/form?amount=${customAmount}&currency=${currency}` : "/donate/form"}
                       className="inline-flex items-center justify-center w-full sm:w-auto bg-gradient-to-r from-islamic-green to-teal-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:from-teal-700 hover:to-islamic-green transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                     >
@@ -375,7 +375,7 @@ export default function Donate() {
                     </div>
                     <h3 className="text-2xl font-bold mb-4 text-gray-900">{type.title}</h3>
                     <p className="text-gray-700 leading-relaxed mb-6 flex-grow">{type.description}</p>
-                    <Link
+                    <BaseLink
                       href="/donate/form"
                       className="inline-flex items-center justify-center bg-gradient-to-r from-islamic-green to-teal-700 text-white px-6 py-3 rounded-lg font-semibold hover:from-teal-700 hover:to-islamic-green transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
                     >
@@ -438,13 +438,13 @@ export default function Donate() {
                 </p>
               </div>
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
+                <BaseLink
                   href="/contact"
                   className="bg-white text-islamic-green px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
                 >
                   Contact Us
                 </BaseLink>
-                <Link
+                <BaseLink
                   href="/about"
                   className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-islamic-green transition-colors"
                 >

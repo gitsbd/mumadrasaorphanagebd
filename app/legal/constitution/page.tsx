@@ -311,8 +311,7 @@ export default function Constitution() {
               <p className="text-sm text-teal-100 mb-4">
                 Your contributions help us provide free education and care to orphaned and underprivileged children
               </p>
-              <Link
-                href="/donate"
+              <BaseLink                 href="/donate"
                 className="inline-flex items-center space-x-2 bg-white text-islamic-green px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
               >
                 <Heart className="h-5 w-5" />

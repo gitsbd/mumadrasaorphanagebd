@@ -89,7 +89,7 @@ export default function NooraniCourse() {
               ))}
             </div>
             <div className="border-t pt-6">
-              <Link
+              <BaseLink
                 href="/application?program=noorani&level=1"
                 className="inline-flex items-center bg-islamic-green text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
               >
@@ -119,7 +119,7 @@ export default function NooraniCourse() {
               ))}
             </div>
             <div className="border-t pt-6">
-              <Link
+              <BaseLink
                 href="/application?program=noorani&level=2"
                 className="inline-flex items-center bg-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
               >
@@ -149,7 +149,7 @@ export default function NooraniCourse() {
               ))}
             </div>
             <div className="border-t pt-6">
-              <Link
+              <BaseLink
                 href="/application?program=noorani&level=3"
                 className="inline-flex items-center bg-teal-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-800 transition-colors"
               >
@@ -224,7 +224,7 @@ export default function NooraniCourse() {
                     <span>Proper Tajweed application</span>
                   </li>
                 </ul>
-                <Link
+                <BaseLink
                   href="/courses/hifz"
                   className="inline-flex items-center bg-teal-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-800 transition-colors"
                 >

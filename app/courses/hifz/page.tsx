@@ -284,7 +284,7 @@ export default function HifzCourse() {
             <p className="text-xl text-teal-100 mb-6">
               Enroll now for admission to our Hifz Program
             </p>
-            <Link
+            <BaseLink
               href="/application?program=hifz"
               className="inline-flex items-center bg-white text-teal-700 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg"
             >

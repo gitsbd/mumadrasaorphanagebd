@@ -265,7 +265,7 @@ function CareerApplyContent() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
+              <BaseLink
                 href="/career"
                 className="inline-flex items-center justify-center bg-islamic-green text-white px-8 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
               >
@@ -304,7 +304,7 @@ function CareerApplyContent() {
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <Link
+          <BaseLink
             href="/career"
             className="inline-flex items-center text-islamic-green hover:text-teal-700 mb-4 transition-colors"
           >

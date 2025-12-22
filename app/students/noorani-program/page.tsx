@@ -24,8 +24,7 @@ export default function NooraniProgramStudents() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
         <div className="mb-8">
-          <Link
-            href="/students"
+          <BaseLink             href="/students"
             className="inline-flex items-center text-islamic-green hover:text-islamic-dark transition-colors mb-4"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />

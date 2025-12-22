@@ -49,8 +49,7 @@ export default function Students() {
                     </div>
                   </div>
                 </div>
-                <Link
-                  href="/students/noorani-program"
+                <BaseLink                   href="/students/noorani-program"
                   className="inline-flex items-center w-full justify-center bg-islamic-green text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
                 >
                   View Noorani Program Students
@@ -89,8 +88,7 @@ export default function Students() {
                     </div>
                   </div>
                 </div>
-                <Link
-                  href="/students/hifz-program"
+                <BaseLink                   href="/students/hifz-program"
                   className="inline-flex items-center w-full justify-center bg-teal-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-islamic-dark transition-colors"
                 >
                   View Hifz Program Students
