@@ -4,18 +4,34 @@ import { useEffect } from "react";
 
 export default function FaviconHandler() {
   useEffect(() => {
-    // Detect basePath from window location (for GitHub Pages)
-    let basePath = '';
-    if (typeof window !== 'undefined') {
-      const pathname = window.location.pathname;
-      if (pathname.startsWith('/mumadrasaorphanagebd')) {
-        basePath = '/mumadrasaorphanagebd';
-      }
-    }
+    // Only run on client-side and only if we're on GitHub Pages (with basePath)
+    if (typeof window === 'undefined') return;
+    
+    const pathname = window.location.pathname;
+    const isGitHubPages = pathname.startsWith('/mumadrasaorphanagebd');
+    
+    // Only update favicon links if we're on GitHub Pages
+    // In local development, Next.js handles favicon automatically
+    if (!isGitHubPages) return;
+    
+    const basePath = '/mumadrasaorphanagebd';
 
-    // Remove existing favicon links
+    // Remove existing favicon links (but keep Next.js default ones in dev)
     const existingLinks = document.querySelectorAll("link[rel='icon'], link[rel='shortcut icon'], link[rel='apple-touch-icon']");
-    existingLinks.forEach(link => link.remove());
+    existingLinks.forEach(link => {
+      // Only remove links that don't have the basePath (to avoid removing our own)
+      const href = link.getAttribute('href') || '';
+      if (!href.includes(basePath)) {
+        link.remove();
+      }
+    });
+
+    // Check if favicon links with basePath already exist
+    const existingBasePathLinks = document.querySelectorAll(`link[href^='${basePath}']`);
+    if (existingBasePathLinks.length > 0) {
+      // Links already exist, no need to recreate
+      return;
+    }
 
     // Create new favicon links with correct basePath
     const faviconIco = document.createElement('link');

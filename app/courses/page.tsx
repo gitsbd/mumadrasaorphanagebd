@@ -55,13 +55,13 @@ export default function Courses() {
                   </li>
                 </ul>
                 <div className="flex gap-3">
-                  <Link
+                  <BaseLink
                     href="/courses/noorani"
                     className="inline-flex items-center bg-islamic-green text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
                   >
                     Learn More →
                   </BaseLink>
-                  <Link
+                  <BaseLink
                     href="/application?program=noorani"
                     className="inline-flex items-center bg-white border-2 border-islamic-green text-islamic-green px-6 py-3 rounded-lg font-semibold hover:bg-islamic-light transition-colors"
                   >
@@ -109,13 +109,13 @@ export default function Courses() {
                   </li>
                 </ul>
                 <div className="flex gap-3">
-                  <Link
+                  <BaseLink
                     href="/courses/hifz"
                     className="inline-flex items-center bg-teal-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-islamic-dark transition-colors"
                   >
                     Learn More →
                   </BaseLink>
-                  <Link
+                  <BaseLink
                     href="/application?program=hifz"
                     className="inline-flex items-center bg-white border-2 border-teal-700 text-teal-700 px-6 py-3 rounded-lg font-semibold hover:bg-teal-50 transition-colors"
                   >
@@ -223,7 +223,7 @@ export default function Courses() {
                     <p className="text-sm text-gray-700 mb-2">
                       Join our Hifz Program for complete Qur'an memorization.
                     </p>
-                    <Link
+                    <BaseLink
                       href="/courses/hifz"
                       className="text-sm text-teal-700 hover:underline font-medium inline-flex items-center"
                     >
