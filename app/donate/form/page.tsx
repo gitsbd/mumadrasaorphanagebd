@@ -118,6 +118,7 @@ function DonateFormContent() {
     return numericValue;
   };
 
+  // Early return for submitted state
   if (isSubmitted) {
     return (
       <div className="min-h-screen bg-gray-50 py-16 px-4">
@@ -234,7 +235,7 @@ function DonateFormContent() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
+              <BaseLink
                 href="/donate"
                 className="inline-flex items-center justify-center bg-islamic-green text-white px-8 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
               >
