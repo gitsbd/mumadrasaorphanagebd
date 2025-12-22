@@ -3,7 +3,7 @@
 import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { FileText, CheckCircle, ArrowLeft, Shield, Mail, Phone, MapPin, Upload, Briefcase, AlertCircle } from "lucide-react";
-import Link from "next/link";
+import BaseLink from "@/components/BaseLink";
 import { APPS_SCRIPT_URLS } from "@/config/apps-script-urls";
 
 function CareerApplyContent() {
@@ -271,7 +271,7 @@ function CareerApplyContent() {
               >
                 <ArrowLeft className="h-5 w-5 mr-2" />
                 Back to Career Page
-              </Link>
+              </BaseLink>
               <button
                 onClick={() => {
                   setIsSubmitted(false);
@@ -310,7 +310,7 @@ function CareerApplyContent() {
           >
             <ArrowLeft className="h-5 w-5 mr-2" />
             Back to Career Page
-          </Link>
+          </BaseLink>
           <h1 className="text-4xl font-bold mb-4 text-gray-900">Career Application Form</h1>
           <p className="text-lg text-gray-700">
             Please fill out the form below to apply for a teaching position. All information is secure and confidential.

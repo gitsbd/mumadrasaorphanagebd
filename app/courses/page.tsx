@@ -1,4 +1,4 @@
-import Link from "next/link";
+import BaseLink from "@/components/BaseLink";
 import { BookOpen, GraduationCap, Clock, Users, Target, Award, ArrowRight, School, FileText, ArrowDown, ArrowRightCircle } from "lucide-react";
 
 export default function Courses() {
@@ -60,14 +60,14 @@ export default function Courses() {
                     className="inline-flex items-center bg-islamic-green text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
                   >
                     Learn More →
-                  </Link>
+                  </BaseLink>
                   <Link
                     href="/application?program=noorani"
                     className="inline-flex items-center bg-white border-2 border-islamic-green text-islamic-green px-6 py-3 rounded-lg font-semibold hover:bg-islamic-light transition-colors"
                   >
                     <FileText className="h-5 w-5 mr-2" />
                     Enroll Now
-                  </Link>
+                  </BaseLink>
                 </div>
               </div>
             </div>
@@ -114,14 +114,14 @@ export default function Courses() {
                     className="inline-flex items-center bg-teal-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-islamic-dark transition-colors"
                   >
                     Learn More →
-                  </Link>
+                  </BaseLink>
                   <Link
                     href="/application?program=hifz"
                     className="inline-flex items-center bg-white border-2 border-teal-700 text-teal-700 px-6 py-3 rounded-lg font-semibold hover:bg-teal-50 transition-colors"
                   >
                     <FileText className="h-5 w-5 mr-2" />
                     Enroll Now
-                  </Link>
+                  </BaseLink>
                 </div>
               </div>
             </div>
@@ -229,7 +229,7 @@ export default function Courses() {
                     >
                       Learn More
                       <ArrowRight className="h-4 w-4 ml-1" />
-                    </Link>
+                    </BaseLink>
                   </div>
                   <div className="bg-islamic-light p-4 rounded-lg border-l-4 border-islamic-green">
                     <div className="flex items-center mb-2">

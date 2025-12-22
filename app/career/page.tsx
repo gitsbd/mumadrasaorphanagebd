@@ -1,5 +1,5 @@
 import { Briefcase, GraduationCap, Users, Clock, MapPin, Mail, CheckCircle, BookOpen, Award, Phone, FileText } from "lucide-react";
-import Link from "next/link";
+import BaseLink from "@/components/BaseLink";
 
 export default function Career() {
   const teacherPositions = [
@@ -155,13 +155,13 @@ export default function Career() {
                       </div>
                     </div>
                     <div className="mt-4 md:mt-0 md:ml-4">
-                      <Link
+                      <BaseLink
                         href={`/career/apply?position=${encodeURIComponent(position.title)}`}
                         className="inline-flex items-center bg-gradient-to-r from-islamic-green to-teal-700 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:from-teal-700 hover:to-islamic-green transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
                       >
                         <FileText className="h-4 w-4 mr-1.5" />
                         Apply Now
-                      </Link>
+                      </BaseLink>
                     </div>
                   </div>
 
@@ -320,12 +320,12 @@ export default function Career() {
                 </div>
               </div>
               <div className="mt-6 text-center">
-                <Link
+                <BaseLink
                   href="/contact"
                   className="inline-block bg-islamic-green text-white px-8 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors"
                 >
                   Contact Us for More Information
-                </Link>
+                </BaseLink>
               </div>
             </div>
           </div>

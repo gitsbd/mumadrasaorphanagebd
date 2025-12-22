@@ -1,4 +1,4 @@
-import Link from "next/link";
+import BaseLink from "@/components/BaseLink";
 import { BookOpen, Users, GraduationCap, Heart, Star, Award, Target, Shield } from "lucide-react";
 import PhotoCarousel from "@/components/PhotoCarousel";
 
@@ -70,18 +70,18 @@ export default function Home() {
                 Kaya Kori (Baligange Bazar), Nakla, Sherpur, Mymensingh, Bangladesh
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mt-8">
-                <Link
+                <BaseLink
                   href="/donate"
                   className="bg-white text-islamic-green px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
                 >
                   Support Our Mission
-                </Link>
-                <Link
+                </BaseLink>
+                <BaseLink
                   href="/about"
                   className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-islamic-green transition-colors"
                 >
                   Learn More
-                </Link>
+                </BaseLink>
               </div>
             </div>
             {/* Right Side - Photo Carousel */}
@@ -186,18 +186,18 @@ export default function Home() {
             Your support helps us provide education, care, and hope to orphaned and underprivileged children.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
+            <BaseLink
               href="/donate"
               className="bg-islamic-green text-white px-8 py-4 rounded-lg font-semibold hover:bg-teal-700 transition-colors shadow-lg text-lg"
             >
               Donate Now
-            </Link>
-            <Link
+            </BaseLink>
+            <BaseLink
               href="/contact"
               className="bg-white border-2 border-islamic-green text-islamic-green px-8 py-4 rounded-lg font-semibold hover:bg-islamic-light transition-colors text-lg"
             >
               Get in Touch
-            </Link>
+            </BaseLink>
           </div>
         </div>
       </section>

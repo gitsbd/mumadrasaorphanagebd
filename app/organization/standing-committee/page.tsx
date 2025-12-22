@@ -1,4 +1,4 @@
-import Link from "next/link";
+import BaseLink from "@/components/BaseLink";
 import { ArrowLeft, Phone } from "lucide-react";
 
 export default function StandingCommitteePage() {
@@ -36,7 +36,7 @@ export default function StandingCommitteePage() {
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Home
-          </Link>
+          </BaseLink>
           <h1 className="text-4xl font-bold text-gray-900 mb-2">Standing Committee</h1>
           <p className="text-gray-600">Organizational structure and leadership</p>
         </div>

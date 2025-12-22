@@ -1,4 +1,4 @@
-import Link from "next/link";
+import BaseLink from "@/components/BaseLink";
 import { ArrowLeft, BookOpen, UserCheck, Award } from "lucide-react";
 
 export default function NooraniProgramStudents() {
@@ -30,7 +30,7 @@ export default function NooraniProgramStudents() {
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Students
-          </Link>
+          </BaseLink>
           <div className="flex items-center space-x-3 mb-2">
             <BookOpen className="h-8 w-8 text-islamic-green" />
             <h1 className="text-4xl font-bold text-gray-900">Noorani Program Students</h1>

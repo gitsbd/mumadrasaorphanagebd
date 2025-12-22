@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import BaseLink from "./BaseLink";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Menu, X, BookOpen, Users, GraduationCap, Heart, Info, FileText } from "lucide-react";
@@ -29,7 +29,7 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
+          <BaseLink href="/" className="flex items-center space-x-3">
             <div className="relative h-12 w-12 sm:h-14 sm:w-14 flex-shrink-0">
               {basePath ? (
                 <Image
@@ -57,39 +57,39 @@ export default function Navigation() {
               <h1 className="text-xl font-bold text-gray-900">Madinatul Uloom</h1>
               <p className="text-xs text-gray-600">Madrasa & Orphanage</p>
             </div>
-          </Link>
+          </BaseLink>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => {
               const Icon = item.icon;
               return (
-                <Link
+                <BaseLink
                   key={item.href}
                   href={item.href}
                   className="flex items-center space-x-2 px-4 py-2 rounded-lg text-gray-700 hover:bg-islamic-light hover:text-islamic-green transition-colors duration-200"
                 >
                   <Icon className="h-4 w-4" />
                   <span className="font-medium">{item.label}</span>
-                </Link>
+                </BaseLink>
               );
             })}
             {/* Enroll Now Button */}
-            <Link
+            <BaseLink
               href="/application"
               className="ml-4 flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2.5 rounded-lg font-semibold shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-600 transition-all duration-300 transform hover:scale-105"
             >
               <FileText className="h-5 w-5" />
               <span>Enroll Now</span>
-            </Link>
+            </BaseLink>
             {/* Donate Button - Right End */}
-            <Link
+            <BaseLink
               href="/donate"
               className="ml-2 flex items-center space-x-2 bg-gradient-to-r from-islamic-green via-teal-600 to-teal-700 text-white px-6 py-2.5 rounded-lg font-semibold shadow-lg hover:shadow-xl hover:from-teal-700 hover:via-teal-600 hover:to-islamic-green transition-all duration-300 transform hover:scale-105"
             >
               <Heart className="h-5 w-5" />
               <span>Donate</span>
-            </Link>
+            </BaseLink>
           </div>
 
           {/* Mobile menu button */}
@@ -110,7 +110,7 @@ export default function Navigation() {
             {navItems.map((item) => {
               const Icon = item.icon;
               return (
-                <Link
+                <BaseLink
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
@@ -118,27 +118,27 @@ export default function Navigation() {
                 >
                   <Icon className="h-5 w-5" />
                   <span className="font-medium">{item.label}</span>
-                </Link>
+                </BaseLink>
               );
             })}
             {/* Enroll Now Button - Mobile */}
-            <Link
+            <BaseLink
               href="/application"
               onClick={() => setIsOpen(false)}
               className="flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-600 transition-all duration-300 mt-2"
             >
               <FileText className="h-5 w-5" />
               <span>Enroll Now</span>
-            </Link>
+            </BaseLink>
             {/* Donate Button - Mobile */}
-            <Link
+            <BaseLink
               href="/donate"
               onClick={() => setIsOpen(false)}
               className="flex items-center justify-center space-x-2 bg-gradient-to-r from-islamic-green via-teal-600 to-teal-700 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl hover:from-teal-700 hover:via-teal-600 hover:to-islamic-green transition-all duration-300 mt-2"
             >
               <Heart className="h-5 w-5" />
               <span>Donate</span>
-            </Link>
+            </BaseLink>
           </div>
         </div>
       )}

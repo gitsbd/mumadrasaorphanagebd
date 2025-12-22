@@ -3,7 +3,7 @@
 import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Heart, DollarSign, CheckCircle, Phone, Mail, ArrowLeft, Shield, AlertCircle } from "lucide-react";
-import Link from "next/link";
+import BaseLink from "@/components/BaseLink";
 import { APPS_SCRIPT_URLS } from "@/config/apps-script-urls";
 
 function DonateFormContent() {
@@ -240,7 +240,7 @@ function DonateFormContent() {
               >
                 <ArrowLeft className="h-5 w-5 mr-2" />
                 Back to Donate Page
-              </Link>
+              </BaseLink>
               <button
                 onClick={() => {
                   setIsSubmitted(false);
@@ -277,7 +277,7 @@ function DonateFormContent() {
           >
             <ArrowLeft className="h-5 w-5 mr-2" />
             Back to Donate Page
-          </Link>
+          </BaseLink>
           <h1 className="text-4xl font-bold mb-4 text-gray-900">Donation Form</h1>
           <p className="text-lg text-gray-700">
             Please fill out the form below to complete your donation. All information is secure and confidential.

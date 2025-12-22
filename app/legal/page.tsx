@@ -1,4 +1,4 @@
-import Link from "next/link";
+import BaseLink from "@/components/BaseLink";
 import { Shield, FileText, RefreshCw, AlertTriangle, FileCheck, Copyright, ArrowRight } from "lucide-react";
 
 export default function LegalIndex() {
@@ -91,7 +91,7 @@ export default function LegalIndex() {
                     <span>Read More</span>
                     <ArrowRight className="h-5 w-5 ml-2" />
                   </div>
-                </Link>
+                </BaseLink>
               );
             })}
           </div>

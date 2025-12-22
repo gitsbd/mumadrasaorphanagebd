@@ -1,4 +1,4 @@
-import Link from "next/link";
+import BaseLink from "@/components/BaseLink";
 import { ArrowLeft, GraduationCap, UserCheck, Award } from "lucide-react";
 
 export default function HifzProgramStudents() {
@@ -32,7 +32,7 @@ export default function HifzProgramStudents() {
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Students
-          </Link>
+          </BaseLink>
           <div className="flex items-center space-x-3 mb-2">
             <GraduationCap className="h-8 w-8 text-teal-700" />
             <h1 className="text-4xl font-bold text-gray-900">Hifz Program Students</h1>

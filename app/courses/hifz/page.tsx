@@ -1,5 +1,5 @@
 import { GraduationCap, Clock, Users, Target, BookOpen, CheckCircle, Award, FileText } from "lucide-react";
-import Link from "next/link";
+import BaseLink from "@/components/BaseLink";
 
 export default function HifzCourse() {
   const phases = [
@@ -290,7 +290,7 @@ export default function HifzCourse() {
             >
               <FileText className="h-6 w-6 mr-2" />
               Enroll Now
-            </Link>
+            </BaseLink>
           </div>
         </div>
       </section>

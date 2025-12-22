@@ -1,4 +1,4 @@
-import Link from "next/link";
+import BaseLink from "@/components/BaseLink";
 import { BookOpen, Users, Shield, FileText, Award, Heart } from "lucide-react";
 
 export default function About() {
@@ -192,7 +192,7 @@ export default function About() {
               >
                 <Heart className="h-5 w-5" />
                 <span>Donate Now</span>
-              </Link>
+              </BaseLink>
             </div>
           </div>
 

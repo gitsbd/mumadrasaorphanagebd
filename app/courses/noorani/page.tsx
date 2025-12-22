@@ -1,5 +1,5 @@
 import { BookOpen, Clock, Users, Target, CheckCircle, ArrowRight, School, FileText } from "lucide-react";
-import Link from "next/link";
+import BaseLink from "@/components/BaseLink";
 
 export default function NooraniCourse() {
   const level1Subjects = [
@@ -95,7 +95,7 @@ export default function NooraniCourse() {
               >
                 <FileText className="h-5 w-5 mr-2" />
                 Enroll Now
-              </Link>
+              </BaseLink>
             </div>
           </div>
 
@@ -125,7 +125,7 @@ export default function NooraniCourse() {
               >
                 <FileText className="h-5 w-5 mr-2" />
                 Enroll Now
-              </Link>
+              </BaseLink>
             </div>
           </div>
 
@@ -155,7 +155,7 @@ export default function NooraniCourse() {
               >
                 <FileText className="h-5 w-5 mr-2" />
                 Enroll Now
-              </Link>
+              </BaseLink>
             </div>
           </div>
 
@@ -230,7 +230,7 @@ export default function NooraniCourse() {
                 >
                   Learn More About Hifz Program
                   <ArrowRight className="h-5 w-5 ml-2" />
-                </Link>
+                </BaseLink>
               </div>
 
               {/* Public School Path */}

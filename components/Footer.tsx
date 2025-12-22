@@ -1,4 +1,4 @@
-import Link from "next/link";
+import BaseLink from "@/components/BaseLink";
 import { Mail, MapPin, Phone, BookOpen, Facebook, User, Users, Info, GraduationCap, Heart, Briefcase, Shield, FileText, RefreshCw, AlertTriangle, FileCheck, Copyright } from "lucide-react";
 
 export default function Footer() {
@@ -24,24 +24,24 @@ export default function Footer() {
               </div>
               <ul className="space-y-2 ml-7">
                 <li>
-                  <Link href="/organization/executive-committee" className="text-gray-400 hover:text-islamic-green transition-colors text-sm">
+                  <BaseLink href="/organization/executive-committee" className="text-gray-400 hover:text-islamic-green transition-colors text-sm">
                     Executive Committee
-                  </Link>
+                  </BaseLink>
                 </li>
                 <li>
-                  <Link href="/organization/standing-committee" className="text-gray-400 hover:text-islamic-green transition-colors text-sm">
+                  <BaseLink href="/organization/standing-committee" className="text-gray-400 hover:text-islamic-green transition-colors text-sm">
                     Standing Committee
-                  </Link>
+                  </BaseLink>
                 </li>
                 <li>
-                  <Link href="/organization/advisory-committee" className="text-gray-400 hover:text-islamic-green transition-colors text-sm">
+                  <BaseLink href="/organization/advisory-committee" className="text-gray-400 hover:text-islamic-green transition-colors text-sm">
                     Advisory Committee
-                  </Link>
+                  </BaseLink>
                 </li>
                 <li>
-                  <Link href="/legal/constitution" className="text-gray-400 hover:text-islamic-green transition-colors text-sm">
+                  <BaseLink href="/legal/constitution" className="text-gray-400 hover:text-islamic-green transition-colors text-sm">
                     Constitution
-                  </Link>
+                  </BaseLink>
                 </li>
               </ul>
             </div>
@@ -64,34 +64,34 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/about" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink href="/about" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
                   <Info className="h-4 w-4 text-islamic-green" />
                   <span>About Us</span>
-                </Link>
+                </BaseLink>
               </li>
               <li>
-                <Link href="/courses" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink href="/courses" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
                   <GraduationCap className="h-4 w-4 text-islamic-green" />
                   <span>Courses</span>
-                </Link>
+                </BaseLink>
               </li>
               <li>
-                <Link href="/donate" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink href="/donate" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
                   <Heart className="h-4 w-4 text-islamic-green" />
                   <span>Donate</span>
-                </Link>
+                </BaseLink>
               </li>
               <li>
-                <Link href="/career" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink href="/career" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
                   <Briefcase className="h-4 w-4 text-islamic-green" />
                   <span>Career</span>
-                </Link>
+                </BaseLink>
               </li>
               <li>
-                <Link href="/contact" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink href="/contact" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
                   <Users className="h-4 w-4 text-islamic-green" />
                   <span>Contact Us</span>
-                </Link>
+                </BaseLink>
               </li>
             </ul>
           </div>
@@ -101,40 +101,40 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Legal</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/legal/privacy-policy" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink href="/legal/privacy-policy" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
                   <Shield className="h-4 w-4 text-islamic-green" />
                   <span>Privacy Policy</span>
-                </Link>
+                </BaseLink>
               </li>
               <li>
-                <Link href="/legal/terms" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink href="/legal/terms" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
                   <FileText className="h-4 w-4 text-islamic-green" />
                   <span>Terms & Conditions</span>
-                </Link>
+                </BaseLink>
               </li>
               <li>
-                <Link href="/legal/refund-policy" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink href="/legal/refund-policy" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
                   <RefreshCw className="h-4 w-4 text-islamic-green" />
                   <span>Refund Policy</span>
-                </Link>
+                </BaseLink>
               </li>
               <li>
-                <Link href="/legal/disclaimer" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink href="/legal/disclaimer" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
                   <AlertTriangle className="h-4 w-4 text-islamic-green" />
                   <span>Disclaimer</span>
-                </Link>
+                </BaseLink>
               </li>
               <li>
-                <Link href="/legal/registration" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink href="/legal/registration" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
                   <FileCheck className="h-4 w-4 text-islamic-green" />
                   <span>Registration & Compliance</span>
-                </Link>
+                </BaseLink>
               </li>
               <li>
-                <Link href="/legal/copyright" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink href="/legal/copyright" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
                   <Copyright className="h-4 w-4 text-islamic-green" />
                   <span>Copyright Notice</span>
-                </Link>
+                </BaseLink>
               </li>
             </ul>
           </div>

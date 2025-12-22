@@ -1,7 +1,7 @@
 "use client";
 
 import { Heart, DollarSign, Users, BookOpen, Shield, CheckCircle, Mail, Phone, Home, Utensils, GraduationCap, UserCircle, FileText, Stethoscope, Wrench, Building2, Lightbulb, Volume2, TreePine, Droplets, ShoppingCart, Shirt, Sun, BookMarked } from "lucide-react";
-import Link from "next/link";
+import BaseLink from "@/components/BaseLink";
 import { useState } from "react";
 
 export default function Donate() {
@@ -189,13 +189,13 @@ export default function Donate() {
                       </div>
                       <span className="text-islamic-green font-semibold">1 Student Monthly Meals</span>
                     </div>
-                    <Link
+                    <BaseLink
                       href="/donate/form?amount=1000"
                       className="inline-flex items-center text-sm bg-islamic-green text-white px-4 py-2 rounded-lg font-medium hover:bg-teal-700 transition-colors"
                     >
                       <Heart className="h-4 w-4 mr-1" />
                       Donate Now
-                    </Link>
+                    </BaseLink>
                   </div>
                   <div className="p-4 bg-white rounded-lg shadow">
                     <div className="flex items-center justify-between mb-3">
@@ -211,7 +211,7 @@ export default function Donate() {
                     >
                       <Heart className="h-4 w-4 mr-1" />
                       Donate Now
-                    </Link>
+                    </BaseLink>
                   </div>
                   <div className="p-4 bg-white rounded-lg shadow">
                     <div className="flex items-center justify-between mb-3">
@@ -227,7 +227,7 @@ export default function Donate() {
                     >
                       <Heart className="h-4 w-4 mr-1" />
                       Donate Now
-                    </Link>
+                    </BaseLink>
                   </div>
                   <div className="p-4 bg-white rounded-lg shadow">
                     <div className="flex items-center justify-between mb-3">
@@ -243,7 +243,7 @@ export default function Donate() {
                     >
                       <Heart className="h-4 w-4 mr-1" />
                       Donate Now
-                    </Link>
+                    </BaseLink>
                   </div>
                   <div className="p-4 bg-white rounded-lg shadow">
                     <div className="flex items-center justify-between mb-3">
@@ -259,7 +259,7 @@ export default function Donate() {
                     >
                       <Heart className="h-4 w-4 mr-1" />
                       Donate Now
-                    </Link>
+                    </BaseLink>
                   </div>
                 </div>
             </div>
@@ -328,7 +328,7 @@ export default function Donate() {
                     >
                       <Heart className="h-5 w-5 mr-2" />
                       Donate Now
-                    </Link>
+                    </BaseLink>
                   </div>
                 </div>
                 
@@ -381,7 +381,7 @@ export default function Donate() {
                     >
                       <Heart className="h-4 w-4 mr-2" />
                       Donate
-                    </Link>
+                    </BaseLink>
                   </div>
                 );
               })}
@@ -443,13 +443,13 @@ export default function Donate() {
                   className="bg-white text-islamic-green px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
                 >
                   Contact Us
-                </Link>
+                </BaseLink>
                 <Link
                   href="/about"
                   className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-islamic-green transition-colors"
                 >
                   Learn More About Us
-                </Link>
+                </BaseLink>
               </div>
             </div>
           </div>

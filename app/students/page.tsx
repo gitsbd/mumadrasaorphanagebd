@@ -1,4 +1,4 @@
-import Link from "next/link";
+import BaseLink from "@/components/BaseLink";
 import { Users, BookOpen, GraduationCap, ArrowRight, UserCheck, Award } from "lucide-react";
 
 export default function Students() {
@@ -55,7 +55,7 @@ export default function Students() {
                 >
                   View Noorani Program Students
                   <ArrowRight className="h-5 w-5 ml-2" />
-                </Link>
+                </BaseLink>
               </div>
             </div>
 
@@ -95,7 +95,7 @@ export default function Students() {
                 >
                   View Hifz Program Students
                   <ArrowRight className="h-5 w-5 ml-2" />
-                </Link>
+                </BaseLink>
               </div>
             </div>
           </div>
