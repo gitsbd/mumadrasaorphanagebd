@@ -82,6 +82,24 @@ export default function Footer() {
                 </BaseLink>
               </li>
               <li>
+                <BaseLink
+                  href="/forms/student-registration"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors"
+                >
+                  <FileText className="h-4 w-4 text-islamic-green" />
+                  <span>Student Admission Form</span>
+                </BaseLink>
+              </li>
+              <li>
+                <BaseLink
+                  href="/forms/student-admission-bn"
+                  className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors"
+                >
+                  <FileText className="h-4 w-4 text-islamic-green" />
+                  <span className="bangla-text">শিক্ষার্থী ভর্তি ফরম (বাংলা)</span>
+                </BaseLink>
+              </li>
+              <li>
                 <BaseLink href="/career" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
                   <Briefcase className="h-4 w-4 text-islamic-green" />
                   <span>Career</span>

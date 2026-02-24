@@ -78,7 +78,7 @@ function ApplicationForm() {
     const lastName = nameParts.slice(1).join(" ") || "—";
     return `
       <div class="form-page">
-        <h1 class="form-title">Student Registration Form</h1>
+        <h1 class="form-title">Student Admission Form</h1>
 
         <p class="section-label">Name of the Applicant:</p>
         <div class="two-fields">
@@ -138,7 +138,7 @@ function ApplicationForm() {
     printWindow.document.write(`
       <!DOCTYPE html>
       <html>
-        <head><title>Student Registration Form</title>
+        <head><title>Student Admission Form</title>
         <style>
           * { box-sizing: border-box; }
           body { font-family: system-ui, sans-serif; color: #333; margin: 0; padding: 20px 32px; background: #fff; }
