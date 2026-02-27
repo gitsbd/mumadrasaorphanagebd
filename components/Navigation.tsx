@@ -3,26 +3,99 @@
 import BaseLink from "./BaseLink";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { Menu, X, BookOpen, Users, GraduationCap, Heart, Info, FileText } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Menu, X, BookOpen, Users, GraduationCap, Heart, Info, FileText, Globe } from "lucide-react";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const [basePath, setBasePath] = useState('');
-  
+  const [isLangOpen, setIsLangOpen] = useState(false);
+  const [basePath, setBasePath] = useState("");
+  const pathname = usePathname() || "/";
+
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const pathname = window.location.pathname;
-      if (pathname.startsWith('/mumadrasaorphanagebd')) {
-        setBasePath('/mumadrasaorphanagebd');
+    if (typeof window !== "undefined") {
+      const path = window.location.pathname || "/";
+      if (path.startsWith("/mumadrasaorphanagebd")) {
+        setBasePath("/mumadrasaorphanagebd");
+      } else {
+        setBasePath("");
       }
     }
   }, []);
 
-  const navItems = [
+  // Language preference & default behavior
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const rawPath = window.location.pathname || "/";
+    const withoutBase = rawPath.startsWith("/mumadrasaorphanagebd")
+      ? rawPath.replace("/mumadrasaorphanagebd", "") || "/"
+      : rawPath;
+
+    const stored = window.localStorage.getItem("siteLang");
+    const preferred = stored === "en" || stored === "bn" ? stored : "bn"; // default Bangla
+
+    const isBnPath = withoutBase === "/bn" || withoutBase.startsWith("/bn/");
+
+    // If preferred is Bangla but we're not on a Bangla path, redirect to Bangla (trailing slash for static export)
+    if (preferred === "bn" && !isBnPath) {
+      const pathPart = withoutBase === "/" ? "/bn" : `/bn${withoutBase}`;
+      const withSlash = pathPart === "/bn" || pathPart.endsWith("/") ? pathPart : `${pathPart}/`;
+      const target = (basePath || "") + withSlash;
+      window.location.replace(target);
+      return;
+    }
+
+    // If preferred is English but we're on a Bangla path, redirect to English equivalent (trailing slash for static export)
+    if (preferred === "en" && isBnPath) {
+      const englishPath =
+        withoutBase === "/bn"
+          ? "/"
+          : withoutBase.replace(/^\/bn/, "") || "/";
+      const withSlash = englishPath === "/" || englishPath.endsWith("/") ? englishPath : `${englishPath}/`;
+      const target = (basePath || "") + withSlash;
+      window.location.replace(target);
+    }
+  }, [basePath]);
+
+  const cleanedPath = pathname.startsWith("/mumadrasaorphanagebd")
+    ? pathname.replace("/mumadrasaorphanagebd", "") || "/"
+    : pathname;
+
+  const isBangla = cleanedPath === "/bn" || cleanedPath.startsWith("/bn/");
+
+  // Match next.config trailingSlash: true so language switcher and redirects work with static export
+  const withTrailingSlash = (p: string) =>
+    p === "/" || p === "/bn" || p.endsWith("/") ? p : `${p}/`;
+
+  const navItemsEn = [
     { href: "/", label: "Home", icon: BookOpen },
     { href: "/about", label: "About Us", icon: Info },
-    { href: "/courses", label: "Program", icon: GraduationCap },
+    { href: "/courses", label: "Programs", icon: GraduationCap },
   ];
+
+  const navItemsBn = [
+    { href: "/bn", label: "হোম", icon: BookOpen },
+    { href: "/bn/about", label: "আমাদের সম্পর্কে", icon: Info },
+    { href: "/bn/courses", label: "প্রোগ্রামসমূহ", icon: GraduationCap },
+  ];
+
+  const navItems = isBangla ? navItemsBn : navItemsEn;
+
+  const enPathRaw = isBangla
+    ? cleanedPath === "/bn"
+      ? "/"
+      : cleanedPath.replace(/^\/bn/, "") || "/"
+    : cleanedPath || "/";
+
+  const bnPathRaw = isBangla
+    ? cleanedPath || "/bn"
+    : cleanedPath === "/"
+      ? "/bn"
+      : `/bn${cleanedPath}`;
+
+  const enPath = withTrailingSlash(enPathRaw);
+  const bnPath = withTrailingSlash(bnPathRaw);
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
@@ -54,8 +127,21 @@ export default function Navigation() {
               )}
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold text-gray-900">Madinatul Uloom</h1>
-              <p className="text-xs text-gray-600">Madrasa & Orphanage</p>
+              {isBangla ? (
+                <>
+                  <h1 className="text-xl font-bold text-gray-900 bangla-text">
+                    মাদিনাতুল উলূম
+                  </h1>
+                  <p className="text-xs text-gray-600 bangla-text">
+                    মাদরাসা ও এতিমখানা
+                  </p>
+                </>
+              ) : (
+                <>
+                  <h1 className="text-xl font-bold text-gray-900">Madinatul Uloom</h1>
+                  <p className="text-xs text-gray-600">Madrasa & Orphanage</p>
+                </>
+              )}
             </div>
           </BaseLink>
 
@@ -76,20 +162,71 @@ export default function Navigation() {
             })}
             {/* Enroll Now Button */}
             <BaseLink
-              href="/application"
+              href={isBangla ? "/bn/application" : "/application"}
               className="ml-4 flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2.5 rounded-lg font-semibold shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-600 transition-all duration-300 transform hover:scale-105"
             >
               <FileText className="h-5 w-5" />
-              <span>Enroll Now</span>
+              <span className={isBangla ? "bangla-text" : ""}>
+                {isBangla ? "ভর্তি আবেদন" : "Enroll Now"}
+              </span>
             </BaseLink>
             {/* Donate Button - Right End */}
             <BaseLink
-              href="/donate"
+              href={isBangla ? "/bn/donate" : "/donate"}
               className="ml-2 flex items-center space-x-2 bg-gradient-to-r from-islamic-green via-teal-600 to-teal-700 text-white px-6 py-2.5 rounded-lg font-semibold shadow-lg hover:shadow-xl hover:from-teal-700 hover:via-teal-600 hover:to-islamic-green transition-all duration-300 transform hover:scale-105"
             >
               <Heart className="h-5 w-5" />
-              <span>Donate</span>
+              <span className={isBangla ? "bangla-text" : ""}>
+                {isBangla ? "অনুদান দিন" : "Donate"}
+              </span>
             </BaseLink>
+            {/* Language Switcher Dropdown (globe + menu) */}
+            <div className="ml-3 relative">
+              <button
+                type="button"
+                onClick={() => setIsLangOpen((open) => !open)}
+                className="flex items-center space-x-2 px-3 py-2 rounded-full border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors duration-200"
+              >
+                <Globe className="h-4 w-4" />
+                <span className={isBangla ? "bangla-text" : ""}>
+                  {isBangla ? "বাংলা" : "English"}
+                </span>
+              </button>
+              {isLangOpen && (
+                <div className="absolute right-0 mt-2 w-48 rounded-lg shadow-lg border border-gray-200 bg-white z-50">
+                  <BaseLink
+                    href={enPath}
+                    onClick={() => {
+                      if (typeof window !== "undefined") {
+                        window.localStorage.setItem("siteLang", "en");
+                      }
+                      setIsLangOpen(false);
+                    }}
+                    className={`flex items-center justify-between px-3 py-2 text-sm ${
+                      !isBangla ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700"
+                    }`}
+                  >
+                    <span>English</span>
+                    <span className="text-xs text-gray-500">English</span>
+                  </BaseLink>
+                  <BaseLink
+                    href={bnPath}
+                    onClick={() => {
+                      if (typeof window !== "undefined") {
+                        window.localStorage.setItem("siteLang", "bn");
+                      }
+                      setIsLangOpen(false);
+                    }}
+                    className={`flex items-center justify-between px-3 py-2 text-sm ${
+                      isBangla ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700"
+                    }`}
+                  >
+                    <span className="bangla-text">বাংলা</span>
+                    <span className="text-xs text-gray-500">Bengali</span>
+                  </BaseLink>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Mobile menu button */}
@@ -123,22 +260,65 @@ export default function Navigation() {
             })}
             {/* Enroll Now Button - Mobile */}
             <BaseLink
-              href="/application"
+              href={isBangla ? "/bn/application" : "/application"}
               onClick={() => setIsOpen(false)}
               className="flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-600 transition-all duration-300 mt-2"
             >
               <FileText className="h-5 w-5" />
-              <span>Enroll Now</span>
+              <span className={isBangla ? "bangla-text" : ""}>
+                {isBangla ? "ভর্তি আবেদন" : "Enroll Now"}
+              </span>
             </BaseLink>
             {/* Donate Button - Mobile */}
             <BaseLink
-              href="/donate"
+              href={isBangla ? "/bn/donate" : "/donate"}
               onClick={() => setIsOpen(false)}
               className="flex items-center justify-center space-x-2 bg-gradient-to-r from-islamic-green via-teal-600 to-teal-700 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl hover:from-teal-700 hover:via-teal-600 hover:to-islamic-green transition-all duration-300 mt-2"
             >
               <Heart className="h-5 w-5" />
-              <span>Donate</span>
+              <span className={isBangla ? "bangla-text" : ""}>
+                {isBangla ? "অনুদান দিন" : "Donate"}
+              </span>
             </BaseLink>
+            {/* Language Switcher - Mobile */}
+            <div className="mt-3 border border-gray-200 rounded-lg p-2">
+              <div className="flex items-center mb-1 px-2">
+                <Globe className="h-4 w-4 text-gray-600 mr-2" />
+                <span className="text-sm text-gray-700 font-semibold">Language</span>
+              </div>
+              <div className="space-y-1">
+                <BaseLink
+                  href={enPath}
+                  onClick={() => {
+                    if (typeof window !== "undefined") {
+                      window.localStorage.setItem("siteLang", "en");
+                    }
+                    setIsOpen(false);
+                  }}
+                  className={`flex items-center justify-between px-3 py-2 text-sm rounded-md ${
+                    !isBangla ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700"
+                  }`}
+                >
+                  <span>English</span>
+                  <span className="text-xs text-gray-500">English</span>
+                </BaseLink>
+                <BaseLink
+                  href={bnPath}
+                  onClick={() => {
+                    if (typeof window !== "undefined") {
+                      window.localStorage.setItem("siteLang", "bn");
+                    }
+                    setIsOpen(false);
+                  }}
+                  className={`flex items-center justify-between px-3 py-2 text-sm rounded-md ${
+                    isBangla ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700"
+                  }`}
+                >
+                  <span className="bangla-text">বাংলা</span>
+                  <span className="text-xs text-gray-500">Bengali</span>
+                </BaseLink>
+              </div>
+            </div>
           </div>
         </div>
       )}

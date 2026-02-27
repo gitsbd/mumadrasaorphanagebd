@@ -218,16 +218,54 @@ export default function StudentRegistrationFormPage() {
           </div>
         </div>
 
-        {/* Terms and Conditions */}
+        {/* Commitment Letter */}
         <div className="mb-10">
           <div className="bg-[#1e3a5f] text-white text-xs font-semibold px-3 py-1 mb-1">
-            Terms and Conditions:
+            Commitment Letter
           </div>
-          <div className="border border-gray-300 px-3 py-2 text-xs leading-relaxed">
-            <ol className="list-decimal list-inside space-y-1">
-              <li>I/we certify that the above information provided by me/us is correct.</li>
-              <li>I undertake to submit all the documents in original for verification.</li>
-            </ol>
+          <div className="border border-gray-300 px-3 py-3 text-xs leading-relaxed space-y-2">
+            <p>I declare and affirm that:</p>
+            <p>
+              I / my child am applying for admission to Madinatul Uloom Madrasa &amp; Orphanage and I have fully understood the
+              rules, conditions and policies of the institution and agree to abide by them.
+            </p>
+            <p>
+              I confirm that all information provided by me is true and correct, and that I have not submitted any false or
+              misleading information.
+            </p>
+            <p>
+              I agree that if, at any time, any of my information is found to be false, the institution reserves the full right to
+              cancel my / my child&apos;s admission.
+            </p>
+            <p>
+              I understand that my child must participate in all madrasa activities—education, discipline and behavior, prayers,
+              regular attendance, and other prescribed programs.
+            </p>
+            <p>
+              I will strive to follow the policies, moral guidelines, and instructions of the institution and will show respect and
+              service towards others.
+            </p>
+            <p>
+              I give permission for the madrasa to use my contact information, whenever necessary, to inform me about any
+              announcements, notices, or urgent matters.
+            </p>
+            <p>
+              I understand that if any expenses fall solely under my personal responsibility (such as special educational materials,
+              medical expenses, or others), I will fulfill those obligations in due time.
+            </p>
+            <p>
+              I promise that neither I nor my family will engage in any slander, rumor, or negative discussion against the madrasa,
+              and that we will uphold all moral and social responsibilities.
+            </p>
+            <p>
+              I am voluntarily filling out this online/printed form and I am fully committed to complying with all rules, terms, and
+              policies of the institution.
+            </p>
+            <div className="mt-4 space-y-1">
+              <p>Date: ____________________________</p>
+              <p>Parent/Student Signature: ___________________________</p>
+              <p>Mobile Number: ___________________________</p>
+            </div>
           </div>
         </div>
 

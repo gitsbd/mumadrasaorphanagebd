@@ -7,18 +7,17 @@ import FaviconHandler from "@/components/FaviconHandler";
 // Get basePath for production
 const basePath = process.env.NODE_ENV === 'production' ? '/mumadrasaorphanagebd' : '';
 
-// Only set favicon metadata in production (for GitHub Pages)
-// In development, Next.js automatically serves favicon.ico from public folder
-const faviconMetadata = process.env.NODE_ENV === 'production' ? {
+const faviconMetadata = {
   icons: {
     icon: [
-      { url: `${basePath}/favicon.ico`, sizes: 'any' },
-      { url: `${basePath}/logo.png`, type: 'image/png' },
+      { url: `${basePath}/favicon.ico`, sizes: "any" },
+      { url: `${basePath}/favicon.svg`, type: "image/svg+xml" },
+      { url: `${basePath}/logo.png`, type: "image/png" },
     ],
     shortcut: `${basePath}/logo.png`,
     apple: `${basePath}/logo.png`,
   },
-} : {};
+};
 
 export const metadata: Metadata = {
   title: "Madinatul Uloom Madrasa & Orphanage | Islamic Education in Bangladesh",
