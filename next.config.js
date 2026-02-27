@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const isProduction = process.env.NODE_ENV === 'production';
-const basePath = isProduction ? '/mumadrasaorphanagebd' : '';
+const isCustomDomain = process.env.NEXT_PUBLIC_CUSTOM_DOMAIN === 'true';
+
+// For GitHub Pages without custom domain we need a basePath (project URL)
+// For a custom domain (e.g. https://mumobd.org) we serve from the root, so no basePath
+const basePath = isProduction && !isCustomDomain ? '/mumadrasaorphanagebd' : '';
 
 const nextConfig = {
   reactStrictMode: true,
