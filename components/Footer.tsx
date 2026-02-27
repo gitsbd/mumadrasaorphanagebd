@@ -68,22 +68,34 @@ export default function Footer() {
               </div>
               <ul className="space-y-2 ml-7">
                 <li>
-                  <BaseLink href="/organization/executive-committee" className="text-gray-400 hover:text-islamic-green transition-colors text-sm">
+                  <BaseLink
+                    href={isBangla ? "/bn/organization/executive-committee" : "/organization/executive-committee"}
+                    className="text-gray-400 hover:text-islamic-green transition-colors text-sm"
+                  >
                     {isBangla ? <span className="bangla-text">এক্সিকিউটিভ কমিটি</span> : "Executive Committee"}
                   </BaseLink>
                 </li>
                 <li>
-                  <BaseLink href="/organization/standing-committee" className="text-gray-400 hover:text-islamic-green transition-colors text-sm">
+                  <BaseLink
+                    href={isBangla ? "/bn/organization/standing-committee" : "/organization/standing-committee"}
+                    className="text-gray-400 hover:text-islamic-green transition-colors text-sm"
+                  >
                     {isBangla ? <span className="bangla-text">স্ট্যান্ডিং কমিটি</span> : "Standing Committee"}
                   </BaseLink>
                 </li>
                 <li>
-                  <BaseLink href="/organization/advisory-committee" className="text-gray-400 hover:text-islamic-green transition-colors text-sm">
+                  <BaseLink
+                    href={isBangla ? "/bn/organization/advisory-committee" : "/organization/advisory-committee"}
+                    className="text-gray-400 hover:text-islamic-green transition-colors text-sm"
+                  >
                     {isBangla ? <span className="bangla-text">পরামর্শক কমিটি</span> : "Advisory Committee"}
                   </BaseLink>
                 </li>
                 <li>
-                  <BaseLink href="/legal/constitution" className="text-gray-400 hover:text-islamic-green transition-colors text-sm">
+                  <BaseLink
+                    href={isBangla ? "/bn/legal/constitution" : "/legal/constitution"}
+                    className="text-gray-400 hover:text-islamic-green transition-colors text-sm"
+                  >
                     {isBangla ? <span className="bangla-text">সংবিধান</span> : "Constitution"}
                   </BaseLink>
                 </li>
@@ -110,7 +122,10 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2">
               <li>
-                <BaseLink href="/about" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink
+                  href={isBangla ? "/bn/about" : "/about"}
+                  className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors"
+                >
                   <Info className="h-4 w-4 text-islamic-green" />
                   <span className={isBangla ? "bangla-text" : ""}>
                     {isBangla ? "আমাদের সম্পর্কে" : "About Us"}
@@ -118,7 +133,10 @@ export default function Footer() {
                 </BaseLink>
               </li>
               <li>
-                <BaseLink href="/courses" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink
+                  href={isBangla ? "/bn/courses" : "/courses"}
+                  className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors"
+                >
                   <GraduationCap className="h-4 w-4 text-islamic-green" />
                   <span className={isBangla ? "bangla-text" : ""}>
                     {isBangla ? "প্রোগ্রামসমূহ" : "Courses"}
@@ -126,7 +144,10 @@ export default function Footer() {
                 </BaseLink>
               </li>
               <li>
-                <BaseLink href="/donate" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink
+                  href={isBangla ? "/bn/donate" : "/donate"}
+                  className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors"
+                >
                   <Heart className="h-4 w-4 text-islamic-green" />
                   <span className={isBangla ? "bangla-text" : ""}>
                     {isBangla ? "অনুদান দিন" : "Donate"}
@@ -154,7 +175,10 @@ export default function Footer() {
                 </BaseLink>
               </li>
               <li>
-                <BaseLink href="/career" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink
+                  href={isBangla ? "/bn/career" : "/career"}
+                  className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors"
+                >
                   <Briefcase className="h-4 w-4 text-islamic-green" />
                   <span className={isBangla ? "bangla-text" : ""}>
                     {isBangla ? "ক্যারিয়ার" : "Career"}
@@ -162,7 +186,10 @@ export default function Footer() {
                 </BaseLink>
               </li>
               <li>
-                <BaseLink href="/contact" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink
+                  href={isBangla ? "/bn/contact" : "/contact"}
+                  className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors"
+                >
                   <Users className="h-4 w-4 text-islamic-green" />
                   <span className={isBangla ? "bangla-text" : ""}>
                     {isBangla ? "যোগাযোগ" : "Contact Us"}
@@ -179,7 +206,10 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2">
               <li>
-                <BaseLink href="/legal/privacy-policy" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink
+                  href={isBangla ? "/bn/legal/privacy-policy" : "/legal/privacy-policy"}
+                  className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors"
+                >
                   <Shield className="h-4 w-4 text-islamic-green" />
                   <span className={isBangla ? "bangla-text" : ""}>
                     {isBangla ? "প্রাইভেসি পলিসি" : "Privacy Policy"}
@@ -187,7 +217,10 @@ export default function Footer() {
                 </BaseLink>
               </li>
               <li>
-                <BaseLink href="/legal/terms" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink
+                  href={isBangla ? "/bn/legal/terms" : "/legal/terms"}
+                  className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors"
+                >
                   <FileText className="h-4 w-4 text-islamic-green" />
                   <span className={isBangla ? "bangla-text" : ""}>
                     {isBangla ? "টার্মস অ্যান্ড কন্ডিশনস" : "Terms & Conditions"}
@@ -195,7 +228,10 @@ export default function Footer() {
                 </BaseLink>
               </li>
               <li>
-                <BaseLink href="/legal/refund-policy" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink
+                  href={isBangla ? "/bn/legal/refund-policy" : "/legal/refund-policy"}
+                  className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors"
+                >
                   <RefreshCw className="h-4 w-4 text-islamic-green" />
                   <span className={isBangla ? "bangla-text" : ""}>
                     {isBangla ? "রিফান্ড পলিসি" : "Refund Policy"}
@@ -203,7 +239,10 @@ export default function Footer() {
                 </BaseLink>
               </li>
               <li>
-                <BaseLink href="/legal/disclaimer" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink
+                  href={isBangla ? "/bn/legal/disclaimer" : "/legal/disclaimer"}
+                  className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors"
+                >
                   <AlertTriangle className="h-4 w-4 text-islamic-green" />
                   <span className={isBangla ? "bangla-text" : ""}>
                     {isBangla ? "ডিসক্লেইমার" : "Disclaimer"}
@@ -211,7 +250,10 @@ export default function Footer() {
                 </BaseLink>
               </li>
               <li>
-                <BaseLink href="/legal/registration" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink
+                  href={isBangla ? "/bn/legal/registration" : "/legal/registration"}
+                  className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors"
+                >
                   <FileCheck className="h-4 w-4 text-islamic-green" />
                   <span className={isBangla ? "bangla-text" : ""}>
                     {isBangla ? "নিবন্ধন ও রেগুলেশন" : "Registration & Compliance"}
@@ -219,7 +261,10 @@ export default function Footer() {
                 </BaseLink>
               </li>
               <li>
-                <BaseLink href="/legal/copyright" className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors">
+                <BaseLink
+                  href={isBangla ? "/bn/legal/copyright" : "/legal/copyright"}
+                  className="flex items-center space-x-2 text-gray-400 hover:text-islamic-green transition-colors"
+                >
                   <Copyright className="h-4 w-4 text-islamic-green" />
                   <span className={isBangla ? "bangla-text" : ""}>
                     {isBangla ? "কপিরাইট নোটিশ" : "Copyright Notice"}
